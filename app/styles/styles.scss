@@ -1,0 +1,27 @@
+$violet: #154064;
+$lightGray: #e0e0e0;
+$purple: #1c5686;
+$darkGray: #828282;
+$black: #333333;
+
+@import "mixins.scss";
+@import "sideNavigationComponent.scss";
+@import "contentComponent.scss";
+@import "tableComponent.scss";
+@import "tableHeaderComponent.scss";
+@import "tableRecordComponent.scss";
+@import "favoriteComponent.scss";
+
+.page {
+  display: flex;
+
+  &__nav {
+    display: flex;
+    width: 18.5%;
+  }
+
+  &__contents {
+    display: flex;
+    width: 80.5%;
+  }
+}

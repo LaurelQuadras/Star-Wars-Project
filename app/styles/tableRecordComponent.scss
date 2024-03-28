@@ -1,0 +1,21 @@
+.table-record-component {
+  width: 100%;
+  display: flex;
+  border: 1px $lightGray;
+  border-style: none none solid none;
+
+  &__column {
+    width: 20%;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+
+    &--text {
+      @include text-properties(400, 14px, 16px, $black);
+    }
+
+    &--name {
+      @include text-properties(700, 16px, 16px, $black);
+    }
+  }
+}

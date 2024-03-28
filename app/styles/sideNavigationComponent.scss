@@ -1,0 +1,38 @@
+.side-navigation-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: $violet;
+
+  &__title {
+    padding: 2rem;
+    @include text-properties(800, 22px, 31px, $lightGray);
+  }
+
+  &__button {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0rem 2rem;
+    width: 100%;
+    height: 2.75rem;
+    background-color: $violet;
+    box-shadow: none;
+    border: 0px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $purple;
+    }
+
+    &--selected {
+      @extend .side-navigation-component__button;
+      background-color: $purple;
+    }
+
+    &--text {
+      @include text-properties(400, 14px, 17px, $lightGray);
+    }
+  }
+}
