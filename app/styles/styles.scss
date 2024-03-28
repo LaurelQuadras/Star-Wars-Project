@@ -3,6 +3,9 @@ $lightGray: #e0e0e0;
 $purple: #1c5686;
 $darkGray: #828282;
 $black: #333333;
+$lightSilver: #f2f2f2;
+$darkBrown: #0000001a;
+$lightBlack: #828282;
 
 @import "mixins.scss";
 @import "sideNavigationComponent.scss";
@@ -10,6 +13,8 @@ $black: #333333;
 @import "tableComponent.scss";
 @import "tableHeaderComponent.scss";
 @import "tableRecordComponent.scss";
+@import "favoriteIconComponent.scss";
+@import "favoriteListComponent.scss";
 @import "favoriteComponent.scss";
 
 .page {

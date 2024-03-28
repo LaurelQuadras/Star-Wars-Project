@@ -1,0 +1,14 @@
+.favorite-list-component {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid $lightGray;
+
+  &__record {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+}
