@@ -1,7 +1,7 @@
 export type PlanetData = {
   name: string;
   climate: string;
-  diameter: any;
-  population: any;
+  diameter: string;
+  population: string;
   favorite: boolean;
 };

@@ -1,51 +1,34 @@
+"use client";
+
+import { useState } from "react";
 import { PlanetData } from "@/app/models/planetData";
+import { TableHeaderSortOptions } from "@/app/models/tableHeaderSortOptions";
+import { filterSortPlanetsList } from "@/app/utils/filterSortPlanetsList";
+import { TableComponentProps } from "./TableComponent.props";
 import TableHeaderComponent from "./TableHeaderComponent/TableHeaderComponent";
 import TableRecordComponent from "./TableRecordComponent/TableRecordComponent";
 
-export default function TableComponent() {
-  const ar: PlanetData[] = [
-    {
-      name: "Yavin",
-      climate: "temperate",
-      diameter: 10200,
-      population: 1000,
-      favorite: false,
-    },
-    {
-      name: "Hoth",
-      climate: "frozen",
-      diameter: 7200,
-      population: "unknown",
-      favorite: false,
-    },
-    {
-      name: "Dagobah",
-      climate: "murky",
-      diameter: 8900,
-      population: "unknown",
-      favorite: false,
-    },
-    {
-      name: "Bespin",
-      climate: "temperate",
-      diameter: 11800,
-      population: 6000000,
-      favorite: false,
-    },
-    {
-      name: "Endor",
-      climate: "temperate",
-      diameter: 4900,
-      population: 4500000000000,
-      favorite: false,
-    },
-  ];
+export default function TableComponent({ planetsData }: TableComponentProps) {
+  const [planetsList, setPlanetsList] = useState<PlanetData[]>(planetsData);
+
+  const sortPlanetsList = (
+    column: keyof PlanetData,
+    sortOption: TableHeaderSortOptions
+  ): void => {
+    const sortedPlanetsList: PlanetData[] = filterSortPlanetsList(
+      planetsList,
+      column,
+      sortOption
+    );
+
+    setPlanetsList(sortedPlanetsList);
+  };
 
   return (
     <div className="table-component">
-      <TableHeaderComponent />
-      {ar.map((value: any, index: number) => (
-        <TableRecordComponent key={index} planetData={value} />
+      <TableHeaderComponent sortPlanetsList={sortPlanetsList} />
+      {planetsList.map((planet: PlanetData) => (
+        <TableRecordComponent key={planet.name} planetData={planet} />
       ))}
     </div>
   );

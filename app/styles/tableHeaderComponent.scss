@@ -1,5 +1,6 @@
 .table-header-component {
   width: 100%;
+  height: 2.5rem;
   display: flex;
   border: 1px $lightGray;
   border-style: solid none;
@@ -12,6 +13,15 @@
 
     &--text {
       @include text-properties(400, 14px, 16px, $darkGray);
+    }
+
+    &--icon {
+      margin-left: 0.5rem;
+
+      &-rotate {
+        @extend .table-header-component__column--icon;
+        transform: rotate(180deg);
+      }
     }
   }
 }

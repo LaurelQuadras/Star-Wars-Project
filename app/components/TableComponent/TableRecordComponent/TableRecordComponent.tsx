@@ -1,5 +1,5 @@
-import FavoriteComponent from "../../FavoriteComponent/FavoriteComponent";
 import { TableRecordComponentProps } from "./TableRecordComponent.props";
+import FavoriteComponent from "../../FavoriteComponent/FavoriteComponent";
 
 export default function TableRecordComponent({
   planetData,
@@ -15,7 +15,9 @@ export default function TableRecordComponent({
                   tableRecordColumn[0] === "name" ? "-name" : "-text"
                 }`}
               >
-                {tableRecordColumn[1]}
+                {tableRecordColumn[1] !== undefined
+                  ? tableRecordColumn[1]
+                  : "unknown"}
               </span>
             ) : (
               <FavoriteComponent />
