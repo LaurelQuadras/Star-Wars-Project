@@ -1,4 +1,4 @@
-export type FavoritePlanetData = {
+export type PlanetDetailData = {
   name: string;
   climate: string;
   gravity: string;

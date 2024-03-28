@@ -1,17 +1,17 @@
 import { FavoriteComponentProps } from "./FavoriteComponent.props";
 
 export default function FavoriteComponent({
-  favoritePlanetData,
+  planetDetailData,
 }: FavoriteComponentProps) {
   return (
     <div className="favorite-component">
       <div className="favorite-component__information">
         <div className="favorite-component__information--data">
           <span className="favorite-component__information--data-name">
-            {favoritePlanetData.name}
+            {planetDetailData.name}
           </span>
           <span className="favorite-component__information--data-climate">
-            {favoritePlanetData.climate}
+            {planetDetailData.climate}
           </span>
         </div>
         <div className="favorite-component__information--remove">
@@ -31,10 +31,10 @@ export default function FavoriteComponent({
       </div>
       <div className="favorite-component__content">
         <span className="favorite-component__content--terrain">
-          Climate: {favoritePlanetData.terrain}
+          Climate: {planetDetailData.terrain}
         </span>
         <span className="favorite-component__content--gravity">
-          Gravity{favoritePlanetData.gravity}
+          Gravity{planetDetailData.gravity}
         </span>
       </div>
     </div>

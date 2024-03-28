@@ -3,6 +3,7 @@
   display: flex;
   border: 1px $lightGray;
   border-style: none none solid none;
+  cursor: pointer;
 
   &__column {
     width: 20%;

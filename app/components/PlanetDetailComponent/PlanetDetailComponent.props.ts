@@ -1,5 +1,5 @@
 import { PlanetDetailData } from "@/app/models/planetDetailData";
 
-export interface FavoriteComponentProps {
+export interface PlanetDetailComponentProps {
   planetDetailData: PlanetDetailData;
 }

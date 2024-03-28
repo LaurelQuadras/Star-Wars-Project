@@ -1,8 +1,8 @@
-import { FavoritePlanetData } from "@/app/models/favoritePlanetData";
+import { PlanetDetailData } from "@/app/models/planetDetailData";
 import FavoriteComponent from "../FavoriteComponent/FavoriteComponent";
 
 export default function FavoriteListComponent() {
-  const sampleFavoriteList: FavoritePlanetData[] = [
+  const sampleFavoriteList: PlanetDetailData[] = [
     {
       name: "Alderaan",
       climate: "temperate",
@@ -26,9 +26,9 @@ export default function FavoriteListComponent() {
   return (
     <div className="favorite-list-component">
       {sampleFavoriteList.map(
-        (favoritePlanetData: FavoritePlanetData, index: number) => (
+        (planetDetaildata: PlanetDetailData, index: number) => (
           <div key={index} className="favorite-list-component__record">
-            <FavoriteComponent favoritePlanetData={favoritePlanetData} />
+            <FavoriteComponent planetDetailData={planetDetaildata} />
           </div>
         )
       )}

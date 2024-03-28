@@ -1,10 +1,19 @@
 .content-component {
   display: flex;
-  flex-direction: column;
   width: 100%;
 
-  &__text {
-    padding: 1rem;
-    @include text-properties(400, 18px, 22px, $black);
+  &__data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &__text {
+      padding: 1rem;
+      @include text-properties(400, 18px, 22px, $black);
+    }
+  }
+
+  &__detail {
+    width: 35%;
   }
 }

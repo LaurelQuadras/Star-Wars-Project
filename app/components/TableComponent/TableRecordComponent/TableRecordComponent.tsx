@@ -3,9 +3,13 @@ import FavoriteIconComponent from "../../FavoriteIconComponent/FavoriteIconCompo
 
 export default function TableRecordComponent({
   planetData,
+  onTableRecordClick,
 }: TableRecordComponentProps) {
   return (
-    <div className="table-record-component">
+    <div
+      className="table-record-component"
+      onClick={() => onTableRecordClick(planetData.name)}
+    >
       {Object.entries(planetData).map(
         (tableRecordColumn: any, index: number) => (
           <div key={index} className="table-record-component__column">
