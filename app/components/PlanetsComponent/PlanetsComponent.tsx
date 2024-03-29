@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { NavigationOptions } from "@/app/models/NavigationOptions";
 import { PlanetDetailData } from "@/app/models/planetDetailData";
 import { useAppDispatch } from "@/lib/hooks";
-import { removePlanetFromFavorite as removePlanetFromFavoriteRedux } from "@/lib/reducers/favoriteReducer";
+import { removePlanetFromFavorite as removePlanetFromFavoriteRedux } from "@/lib/reducers/planetReducer";
 import { PlanetsComponentProps } from "./PlanetsComponent.props";
 import ContentComponent from "../ContentComponent/ContentComponent";
 import PopUpModalComponent from "../PopUpModalComponent/PopUpModalComponent";

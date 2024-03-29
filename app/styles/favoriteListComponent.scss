@@ -3,10 +3,10 @@
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  column-gap: 2.3rem;
   border-top: 1px solid $lightGray;
 
   &__record {
-    width: 33%;
     display: flex;
     justify-content: center;
     padding: 2rem 1rem;

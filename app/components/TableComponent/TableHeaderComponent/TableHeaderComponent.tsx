@@ -6,7 +6,7 @@ import {
   SortOptionStoreInfo,
   getSortingFieldValues,
   setSortFieldValues,
-} from "@/lib/reducers/favoriteReducer";
+} from "@/lib/reducers/planetReducer";
 import { TableHeaderComponentProps } from "./TableHeaderComponent.props";
 
 export default function TableHeaderComponent({

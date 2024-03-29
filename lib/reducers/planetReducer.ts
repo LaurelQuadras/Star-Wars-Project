@@ -1,22 +1,12 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import {
+  PlanetReducerType,
+  PlanetStoreInfo,
+  SortOptionStoreInfo,
+} from "@/app/models/reducerModels";
 import { TableHeaderSortOptions } from "@/app/models/tableHeaderSortOptions";
 
-export type PlanetStoreInfo = {
-  id: number;
-  name: string;
-};
-
-export type SortOptionStoreInfo = {
-  sortField: string;
-  sortDirection: TableHeaderSortOptions;
-};
-
-type FavoritesType = {
-  favoriteList: PlanetStoreInfo[];
-  sortOption: SortOptionStoreInfo;
-};
-
-export const initialState: FavoritesType = {
+export const initialState: PlanetReducerType = {
   favoriteList: [],
   sortOption: {
     sortField: "",
@@ -24,11 +14,11 @@ export const initialState: FavoritesType = {
   },
 };
 
-export const favoriteReducer = createSlice({
-  name: "favoriteReducer",
+export const planetReducer = createSlice({
+  name: "planetReducer",
   initialState,
   reducers: {
-    updateFavoriteList: (slice: FavoritesType, action) => {
+    updateFavoriteList: (slice: PlanetReducerType, action) => {
       slice.favoriteList
         .map((planetStoreValue: PlanetStoreInfo) => planetStoreValue.id)
         .includes(action.payload.id)
@@ -41,13 +31,13 @@ export const favoriteReducer = createSlice({
           )
         : slice.favoriteList.push(action.payload);
     },
-    removePlanetFromFavorite: (slice: FavoritesType, action) => {
+    removePlanetFromFavorite: (slice: PlanetReducerType, action) => {
       slice.favoriteList = slice.favoriteList.filter(
         (planetStoreValue: PlanetStoreInfo) =>
           planetStoreValue.name !== action.payload
       );
     },
-    setSortFieldValues: (slice: FavoritesType, action) => {
+    setSortFieldValues: (slice: PlanetReducerType, action) => {
       slice.sortOption = action.payload;
     },
   },
@@ -57,15 +47,15 @@ export const {
   updateFavoriteList,
   removePlanetFromFavorite,
   setSortFieldValues,
-} = favoriteReducer.actions;
+} = planetReducer.actions;
 
-const sliceSelector = (state: any): FavoritesType => state.favoriteReducer;
+const sliceSelector = (state: any): PlanetReducerType => state.planetReducer;
 
 export const getFavoritesList = createSelector(
   sliceSelector,
-  (slice: FavoritesType): PlanetStoreInfo[] => slice.favoriteList
+  (slice: PlanetReducerType): PlanetStoreInfo[] => slice.favoriteList
 );
 export const getSortingFieldValues = createSelector(
   sliceSelector,
-  (slice: FavoritesType): SortOptionStoreInfo => slice.sortOption
+  (slice: PlanetReducerType): SortOptionStoreInfo => slice.sortOption
 );

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { favoriteReducer } from "./reducers/favoriteReducer";
+import { planetReducer } from "./reducers/planetReducer";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      favoriteReducer: favoriteReducer.reducer,
+      planetReducer: planetReducer.reducer,
     },
   });
 };

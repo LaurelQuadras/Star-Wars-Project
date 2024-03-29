@@ -5,7 +5,7 @@ import {
   getFavoritesList,
   updateFavoriteList,
   PlanetStoreInfo,
-} from "@/lib/reducers/favoriteReducer";
+} from "@/lib/reducers/planetReducer";
 import { FavoriteIconComponentProps } from "./FavoriteIconComponent.props";
 
 export default function FavoriteIconComponent({

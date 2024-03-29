@@ -8,7 +8,7 @@ import { useAppSelector } from "@/lib/hooks";
 import {
   SortOptionStoreInfo,
   getSortingFieldValues,
-} from "@/lib/reducers/favoriteReducer";
+} from "@/lib/reducers/planetReducer";
 import { TableComponentProps } from "./TableComponent.props";
 import TableHeaderComponent from "./TableHeaderComponent/TableHeaderComponent";
 import TableRecordComponent from "./TableRecordComponent/TableRecordComponent";

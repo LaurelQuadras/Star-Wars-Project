@@ -1,6 +1,8 @@
 .favorite-component {
   width: 20.5rem;
   height: 22.3125rem;
+  min-width: 20.5rem;
+  min-height: 22.3125rem;
   border: 1px solid $lightSilver;
   box-shadow: 2px 2px 3px 0px $darkBrown;
   border-radius: 0.5rem;

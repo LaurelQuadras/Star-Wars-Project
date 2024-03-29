@@ -5,7 +5,7 @@ import { useAppSelector } from "@/lib/hooks";
 import {
   getFavoritesList,
   PlanetStoreInfo,
-} from "@/lib/reducers/favoriteReducer";
+} from "@/lib/reducers/planetReducer";
 import { getPlanetDataById } from "../api/apiRoutes";
 import PlanetsComponent from "../components/PlanetsComponent/PlanetsComponent";
 import { PlanetDetailData } from "../models/planetDetailData";
