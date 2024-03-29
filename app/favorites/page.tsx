@@ -2,29 +2,34 @@
 
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/lib/hooks";
-import { getFavoritesList } from "@/lib/reducers/favoriteReducer";
+import {
+  getFavoritesList,
+  PlanetStoreInfo,
+} from "@/lib/reducers/favoriteReducer";
 import { getPlanetDataById } from "../api/apiRoutes";
 import PlanetsComponent from "../components/PlanetsComponent/PlanetsComponent";
 import { PlanetDetailData } from "../models/planetDetailData";
 
 export default function Home() {
-  const favoriteIdList: number[] = useAppSelector(getFavoritesList);
+  const favoritePlanetStoreList: PlanetStoreInfo[] =
+    useAppSelector(getFavoritesList);
   const [favoritePlanetDetailsData, setFavoritePlanetDetailsData] = useState<
     PlanetDetailData[]
   >([]);
 
   useEffect(() => {
-    fetchPlanetsData(favoriteIdList);
+    fetchPlanetsData(favoritePlanetStoreList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [favoriteIdList]);
+  }, [favoritePlanetStoreList]);
 
-  const fetchPlanetsData = async (favoriteIdList: number[]) => {
+  const fetchPlanetsData = async (favoriteIdList: PlanetStoreInfo[]) => {
     const favoritePlanetList: PlanetDetailData[] = [];
 
-    for (const favoriteId of favoriteIdList) {
+    for (const planetStoreValue of favoriteIdList) {
       const planetDetailData: PlanetDetailData = await getPlanetDataById(
-        favoriteId
+        planetStoreValue.id
       );
+
       favoritePlanetList.push(planetDetailData);
     }
 

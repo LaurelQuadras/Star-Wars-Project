@@ -6,8 +6,8 @@ import { FavoriteListComponentProps } from "./FavoriteListComponent.props";
 import FavoriteComponent from "../FavoriteComponent/FavoriteComponent";
 
 export default function FavoriteListComponent({
-  setIsRemoveModalOpen,
   favortiePlanetsData,
+  openRemoveModal,
 }: FavoriteListComponentProps) {
   const noFavoritesContent = (): ReactNode => {
     return (
@@ -25,7 +25,7 @@ export default function FavoriteListComponent({
           <div key={index} className="favorite-list-component__record">
             <FavoriteComponent
               planetDetailData={planetDetaildata}
-              setIsRemoveModalOpen={setIsRemoveModalOpen}
+              openRemoveModal={openRemoveModal}
             />
           </div>
         )

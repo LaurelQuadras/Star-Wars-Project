@@ -12,9 +12,9 @@ import TableComponent from "../TableComponent/TableComponent";
 export default function ContentComponent({
   planetsData,
   favortiePlanetsData,
-  setIsRemoveModalOpen,
   navOptionSelected,
   planetId,
+  openRemoveModal,
 }: ContentComponentProps) {
   const [planetDetailData, setPlanetDetailData] = useState<PlanetDetailData>({
     name: "",
@@ -39,8 +39,8 @@ export default function ContentComponent({
       <TableComponent planetsData={planetsData} />
     ) : navOptionSelected === NavigationOptions.Favorites ? (
       <FavoriteListComponent
-        setIsRemoveModalOpen={setIsRemoveModalOpen}
         favortiePlanetsData={favortiePlanetsData}
+        openRemoveModal={openRemoveModal}
       />
     ) : (
       renderHomePage()

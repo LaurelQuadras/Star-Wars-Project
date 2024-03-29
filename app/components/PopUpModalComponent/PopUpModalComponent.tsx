@@ -2,6 +2,7 @@ import { PopUpModalComponentProps } from "./PopUpModalComponent.props";
 
 export default function PopUpModalComponent({
   setIsRemoveModalOpen,
+  removePlanetFromFavorite,
 }: PopUpModalComponentProps) {
   return (
     <div
@@ -36,7 +37,10 @@ export default function PopUpModalComponent({
             >
               Cancel
             </button>
-            <button className="popup-modal-component__dialog--content-actions-remove">
+            <button
+              className="popup-modal-component__dialog--content-actions-remove"
+              onClick={removePlanetFromFavorite}
+            >
               Remove
             </button>
           </div>

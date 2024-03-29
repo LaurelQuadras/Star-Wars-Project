@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
   getFavoritesList,
   updateFavoriteList,
+  PlanetStoreInfo,
 } from "@/lib/reducers/favoriteReducer";
 import { FavoriteIconComponentProps } from "./FavoriteIconComponent.props";
 
@@ -11,17 +12,30 @@ export default function FavoriteIconComponent({
   planetData,
 }: FavoriteIconComponentProps) {
   const dispatch = useAppDispatch();
-  const favoriteIdList: number[] = useAppSelector(getFavoritesList);
+  const favoritePlanetStoreList: PlanetStoreInfo[] =
+    useAppSelector(getFavoritesList);
 
   const [planet, setPlanet] = useState<PlanetData>(planetData);
 
   const onFavoriteIconClick = (): void => {
     setPlanet({ ...planet, favorite: !planet.favorite });
-    dispatch(updateFavoriteList(planetData.id));
+    dispatch(
+      updateFavoriteList({
+        id: planet.id,
+        name: planet.name,
+      })
+    );
   };
 
   useEffect(() => {
-    if (favoriteIdList.includes(planet.id)) {
+    if (
+      favoritePlanetStoreList
+        .map(
+          (favoritePlanetStoreValue: PlanetStoreInfo) =>
+            favoritePlanetStoreValue.id
+        )
+        .includes(planet.id)
+    ) {
       setPlanet({ ...planet, favorite: !planet.favorite });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -2,7 +2,7 @@ import { FavoriteComponentProps } from "./FavoriteComponent.props";
 
 export default function FavoriteComponent({
   planetDetailData,
-  setIsRemoveModalOpen,
+  openRemoveModal,
 }: FavoriteComponentProps) {
   return (
     <div className="favorite-component">
@@ -17,7 +17,7 @@ export default function FavoriteComponent({
         </div>
         <div
           className="favorite-component__information--remove"
-          onClick={() => setIsRemoveModalOpen(true)}
+          onClick={() => openRemoveModal(planetDetailData.name)}
         >
           <picture>
             <img src="/icons/removeIcon.svg" alt="remove-icon" />
