@@ -1,5 +1,5 @@
 import { PlanetData } from "@/app/models/planetData";
 
-export interface TableRecordComponentProps {
+export interface FavoriteIconComponentProps {
   planetData: PlanetData;
 }

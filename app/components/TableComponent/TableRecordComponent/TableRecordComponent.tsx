@@ -1,17 +1,22 @@
+import { useRouter } from "next/navigation";
 import { TableRecordComponentProps } from "./TableRecordComponent.props";
 import FavoriteIconComponent from "../../FavoriteIconComponent/FavoriteIconComponent";
 
 export default function TableRecordComponent({
   planetData,
-  onTableRecordClick,
 }: TableRecordComponentProps) {
+  const router = useRouter();
+
+  const onTableRecordClick = (): void => {
+    const url = `/planets/${planetData.id}`;
+    router.replace(url);
+  };
+
   return (
-    <div
-      className="table-record-component"
-      onClick={() => onTableRecordClick(planetData.name)}
-    >
-      {Object.entries(planetData).map(
-        (tableRecordColumn: any, index: number) => (
+    <div className="table-record-component" onClick={onTableRecordClick}>
+      {Object.entries(planetData)
+        .slice(1)
+        .map((tableRecordColumn: any, index: number) => (
           <div key={index} className="table-record-component__column">
             {tableRecordColumn[0] !== "favorite" ? (
               <span
@@ -19,16 +24,13 @@ export default function TableRecordComponent({
                   tableRecordColumn[0] === "name" ? "-name" : "-text"
                 }`}
               >
-                {tableRecordColumn[1] !== undefined
-                  ? tableRecordColumn[1]
-                  : "unknown"}
+                {tableRecordColumn[1]}
               </span>
             ) : (
-              <FavoriteIconComponent />
+              <FavoriteIconComponent planetData={planetData} />
             )}
           </div>
-        )
-      )}
+        ))}
     </div>
   );
 }

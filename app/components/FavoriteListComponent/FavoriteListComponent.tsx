@@ -1,36 +1,26 @@
 "use client";
 
+import { ReactNode } from "react";
 import { PlanetDetailData } from "@/app/models/planetDetailData";
 import { FavoriteListComponentProps } from "./FavoriteListComponent.props";
 import FavoriteComponent from "../FavoriteComponent/FavoriteComponent";
 
 export default function FavoriteListComponent({
   setIsRemoveModalOpen,
+  favortiePlanetsData,
 }: FavoriteListComponentProps) {
-  const sampleFavoriteList: PlanetDetailData[] = [
-    {
-      name: "Alderaan",
-      climate: "temperate",
-      gravity: "1 standard",
-      terrain: "mountains, grassland",
-    },
-    {
-      name: "Alderaan",
-      climate: "temperate",
-      gravity: "1 standard",
-      terrain: "mountains, grassland",
-    },
-    {
-      name: "Alderaan",
-      climate: "temperate",
-      gravity: "1 standard",
-      terrain: "mountains, grassland",
-    },
-  ];
+  const noFavoritesContent = (): ReactNode => {
+    return (
+      <span className="favorite-list-component__no-favorites">
+        No Favorites
+      </span>
+    );
+  };
 
   return (
     <div className="favorite-list-component">
-      {sampleFavoriteList.map(
+      {favortiePlanetsData.length === 0 ? noFavoritesContent() : null}
+      {favortiePlanetsData.map(
         (planetDetaildata: PlanetDetailData, index: number) => (
           <div key={index} className="favorite-list-component__record">
             <FavoriteComponent

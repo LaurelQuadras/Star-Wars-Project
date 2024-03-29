@@ -18,8 +18,8 @@ export const getPlanets = async (): Promise<PlanetData[]> => {
 
   const planetApiData: PlanetsApiData = await response.json();
   const planetData: PlanetData[] = planetApiData.results.map(
-    (planetResultApiData: PlanetsResultApiData) =>
-      getPlanetData(planetResultApiData)
+    (planetResultApiData: PlanetsResultApiData, index: number) =>
+      getPlanetData(planetResultApiData, index)
   );
 
   return planetData;

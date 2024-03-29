@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
 import "./styles/styles.scss";
+import StoreProvider from "./StoreProvider";
 
 const latoFont = Lato({ subsets: ["latin"], weight: ["400", "700", "900"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={latoFont.className}>{children}</body>
+      <body className={latoFont.className}>
+        <StoreProvider>{children}</StoreProvider>
+      </body>
     </html>
   );
 }

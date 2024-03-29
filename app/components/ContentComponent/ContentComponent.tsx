@@ -11,6 +11,7 @@ import TableComponent from "../TableComponent/TableComponent";
 
 export default function ContentComponent({
   planetsData,
+  favortiePlanetsData,
   setIsRemoveModalOpen,
   navOptionSelected,
   planetId,
@@ -37,7 +38,10 @@ export default function ContentComponent({
     return navOptionSelected === NavigationOptions.Planets ? (
       <TableComponent planetsData={planetsData} />
     ) : navOptionSelected === NavigationOptions.Favorites ? (
-      <FavoriteListComponent setIsRemoveModalOpen={setIsRemoveModalOpen} />
+      <FavoriteListComponent
+        setIsRemoveModalOpen={setIsRemoveModalOpen}
+        favortiePlanetsData={favortiePlanetsData}
+      />
     ) : (
       renderHomePage()
     );

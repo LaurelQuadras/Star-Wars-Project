@@ -10,6 +10,7 @@ import SideNavigationComponent from "../SideNavigationComponent/SideNavigationCo
 
 export default function PlanetsComponent({
   planetsData,
+  favortiePlanetsData,
   planetId,
 }: PlanetsComponentProps) {
   const pathname = usePathname();
@@ -43,6 +44,7 @@ export default function PlanetsComponent({
       >
         <ContentComponent
           planetsData={planetsData}
+          favortiePlanetsData={favortiePlanetsData}
           setIsRemoveModalOpen={setIsRemoveModalOpen}
           navOptionSelected={navOptionSelected}
           planetId={planetId}

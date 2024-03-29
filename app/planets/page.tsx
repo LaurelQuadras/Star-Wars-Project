@@ -6,7 +6,7 @@ export default async function Home() {
   const planetsData: PlanetData[] = await getPlanets();
   return (
     <main className="page" data-testid="page-class">
-      <PlanetsComponent planetsData={planetsData} />
+      <PlanetsComponent planetsData={planetsData} favortiePlanetsData={[]} />
     </main>
   );
 }

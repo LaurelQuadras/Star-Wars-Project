@@ -10,7 +10,11 @@ export default async function Page({
   const planetsData: PlanetData[] = await getPlanets();
   return (
     <main className="page" data-testid="page-class">
-      <PlanetsComponent planetsData={planetsData} planetId={planetId} />
+      <PlanetsComponent
+        planetsData={planetsData}
+        planetId={planetId}
+        favortiePlanetsData={[]}
+      />
     </main>
   );
 }
