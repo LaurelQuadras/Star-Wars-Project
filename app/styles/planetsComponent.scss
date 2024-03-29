@@ -1,0 +1,24 @@
+.planets-component {
+  width: 100%;
+  display: flex;
+
+  &__nav {
+    display: flex;
+    width: 18.5%;
+  }
+
+  &__backdrop-nav {
+    @extend .planets-component__nav;
+    opacity: 60%;
+  }
+
+  &__contents {
+    display: flex;
+    width: 81.5%;
+  }
+
+  &__backdrop-contents {
+    @extend .planets-component__contents;
+    opacity: 60%;
+  }
+}

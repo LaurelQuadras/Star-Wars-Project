@@ -1,0 +1,77 @@
+.popup-modal-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+
+  &__dialog {
+    width: 25.437rem;
+    height: 7.5rem;
+    background-color: $white;
+    box-shadow: 0px 4px 4px 0px $darkBlack;
+    display: flex;
+    flex-direction: column;
+
+    &--title {
+      height: 33%;
+      background-color: $lightRed;
+      display: flex;
+      justify-content: space-between;
+      padding-left: 3rem;
+      padding-right: 1rem;
+      align-items: center;
+
+      &-text {
+        @include text-properties(700, 16px, 16px, $darkRed);
+      }
+
+      &-remove {
+        height: 60%;
+        display: flex;
+        cursor: pointer;
+        transform: scale(1.8);
+      }
+    }
+
+    &--content {
+      height: 66%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      &-text {
+        @include text-properties(400, 14px, 16px, $black);
+      }
+
+      &-actions {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        gap: 0.5rem;
+
+        &-cancel {
+          border: 0px;
+          background-color: $white;
+          padding: 0.15rem 0.5rem;
+          cursor: pointer;
+          border-radius: 0.25rem;
+          text-decoration: underline;
+          text-underline-offset: 0.2rem;
+          @include text-properties(400, 14px, 16.8px, $purple);
+        }
+
+        &-remove {
+          background-color: $darkRed;
+          padding: 0.15rem 0.5rem;
+          border-radius: 2px;
+          border: 0px;
+          cursor: pointer;
+          @include text-properties(400, 12px, 14px, $white);
+        }
+      }
+    }
+  }
+}

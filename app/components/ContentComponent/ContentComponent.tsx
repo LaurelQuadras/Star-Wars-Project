@@ -11,6 +11,7 @@ import TableComponent from "../TableComponent/TableComponent";
 
 export default function ContentComponent({
   planetsData,
+  setIsRemoveModalOpen,
 }: ContentComponentProps) {
   const [planetDetailData, setPlanetDetailData] = useState<PlanetDetailData>();
 
@@ -33,11 +34,11 @@ export default function ContentComponent({
     <div className="content-component">
       <div className="content-component__data">
         <span className="content-component__data__text">Planets</span>
-        <TableComponent
+        {/* <TableComponent
           planetsData={planetsData}
           onTableRecordClick={onTableRecordClick}
-        />
-        {/* <FavoriteListComponent /> */}
+        /> */}
+        <FavoriteListComponent setIsRemoveModalOpen={setIsRemoveModalOpen} />
       </div>
       {planetDetailData && (
         <div className="content-component__detail">
