@@ -38,7 +38,9 @@ export default function ContentComponent({
       <TableComponent planetsData={planetsData} />
     ) : navOptionSelected === NavigationOptions.Favorites ? (
       <FavoriteListComponent setIsRemoveModalOpen={setIsRemoveModalOpen} />
-    ) : null;
+    ) : (
+      renderHomePage()
+    );
   };
 
   const renderPageTitle = (): string => {
@@ -47,6 +49,14 @@ export default function ContentComponent({
       : navOptionSelected === NavigationOptions.Favorites
       ? "Favorites"
       : "";
+  };
+
+  const renderHomePage = (): ReactNode => {
+    return (
+      <span className="content-component__home-page">
+        Please select any of the Navigation Options on the left side
+      </span>
+    );
   };
 
   return (

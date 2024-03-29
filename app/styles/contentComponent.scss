@@ -16,4 +16,11 @@
   &__detail {
     width: 35%;
   }
+
+  &__home-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
