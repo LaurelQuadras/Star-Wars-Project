@@ -8,6 +8,7 @@ export default function PopUpModalComponent({
     <div
       className="popup-modal-component"
       onClick={() => setIsRemoveModalOpen(false)}
+      data-testid="popup-modal-component"
     >
       <div
         className="popup-modal-component__dialog"
@@ -20,6 +21,7 @@ export default function PopUpModalComponent({
           <div
             className="popup-modal-component__dialog--title-remove"
             onClick={() => setIsRemoveModalOpen(false)}
+            data-testid="popup-modal-component-close-button"
           >
             <picture>
               <img src="/icons/removeIcon.svg" alt="remove-icon" />
@@ -34,12 +36,14 @@ export default function PopUpModalComponent({
             <button
               className="popup-modal-component__dialog--content-actions-cancel"
               onClick={() => setIsRemoveModalOpen(false)}
+              data-testid="popup-modal-component-cancel-button"
             >
               Cancel
             </button>
             <button
               className="popup-modal-component__dialog--content-actions-remove"
               onClick={removePlanetFromFavorite}
+              data-testid="popup-modal-component-remove-button"
             >
               Remove
             </button>

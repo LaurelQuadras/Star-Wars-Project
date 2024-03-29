@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { PlanetData } from "@/app/models/planetData";
+import { PlanetStoreInfo } from "@/app/models/reducerModels";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
   getFavoritesList,
   updateFavoriteList,
-  PlanetStoreInfo,
 } from "@/lib/reducers/planetReducer";
 import { FavoriteIconComponentProps } from "./FavoriteIconComponent.props";
 
@@ -48,6 +48,7 @@ export default function FavoriteIconComponent({
         e.stopPropagation();
         onFavoriteIconClick();
       }}
+      data-testid="favorite-icon-component"
     >
       <picture>
         <img
@@ -55,6 +56,7 @@ export default function FavoriteIconComponent({
             planet.favorite ? "starIconChecked" : "starIconUnchecked"
           }.svg`}
           alt="favorite-icon"
+          data-testid="favorite-icon-component-icon"
         />
       </picture>
     </div>

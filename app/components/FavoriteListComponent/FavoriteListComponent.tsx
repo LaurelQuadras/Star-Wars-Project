@@ -11,14 +11,20 @@ export default function FavoriteListComponent({
 }: FavoriteListComponentProps) {
   const noFavoritesContent = (): ReactNode => {
     return (
-      <span className="favorite-list-component__no-favorites">
+      <span
+        className="favorite-list-component__no-favorites"
+        data-testid="favorite-list-component-no-favorites"
+      >
         No Favorites
       </span>
     );
   };
 
   return (
-    <div className="favorite-list-component">
+    <div
+      className="favorite-list-component"
+      data-testid="favorite-list-component"
+    >
       {favortiePlanetsData.length === 0 ? noFavoritesContent() : null}
       {favortiePlanetsData.map(
         (planetDetaildata: PlanetDetailData, index: number) => (

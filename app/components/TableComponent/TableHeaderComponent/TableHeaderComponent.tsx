@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { PlanetData } from "@/app/models/planetData";
+import { SortOptionStoreInfo } from "@/app/models/reducerModels";
 import { TableHeaderSortOptions } from "@/app/models/tableHeaderSortOptions";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
-  SortOptionStoreInfo,
   getSortingFieldValues,
   setSortFieldValues,
 } from "@/lib/reducers/planetReducer";
@@ -74,7 +74,10 @@ export default function TableHeaderComponent({
   };
 
   return (
-    <div className="table-header-component">
+    <div
+      className="table-header-component"
+      data-testid="table-header-component"
+    >
       {tableHeaderColumns.map((tableHeaderColumn: string, index: number) => (
         <div
           key={index}
@@ -86,6 +89,7 @@ export default function TableHeaderComponent({
           onClick={() =>
             onTableSortClick(tableHeaderColumn as keyof PlanetData)
           }
+          data-testid={`table-header-component-${tableHeaderColumn}`}
         >
           <span className="table-header-component__column--text">
             {tableHeaderColumn}

@@ -57,22 +57,31 @@ export default function ContentComponent({
 
   const renderHomePage = (): ReactNode => {
     return (
-      <span className="content-component__home-page">
+      <span
+        className="content-component__home-page"
+        data-testid="content-component-data"
+      >
         Please select any of the Navigation Options on the left side
       </span>
     );
   };
 
   return (
-    <div className="content-component">
+    <div className="content-component" data-testid="content-component">
       <div className="content-component__data">
-        <span className="content-component__data__text">
+        <span
+          className="content-component__data__text"
+          data-testid="content-component-title"
+        >
           {renderPageTitle()}
         </span>
         {renderPageContent()}
       </div>
       {planetId && (
-        <div className="content-component__detail">
+        <div
+          className="content-component__detail"
+          data-testid="content-component-detail"
+        >
           <PlanetDetailComponent planetDetailData={planetDetailData} />
         </div>
       )}

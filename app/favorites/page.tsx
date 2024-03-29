@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/lib/hooks";
-import {
-  getFavoritesList,
-  PlanetStoreInfo,
-} from "@/lib/reducers/planetReducer";
+import { getFavoritesList } from "@/lib/reducers/planetReducer";
 import { getPlanetDataById } from "../api/apiRoutes";
 import PlanetsComponent from "../components/PlanetsComponent/PlanetsComponent";
 import { PlanetDetailData } from "../models/planetDetailData";
+import { PlanetStoreInfo } from "../models/reducerModels";
 
 export default function Home() {
   const favoritePlanetStoreList: PlanetStoreInfo[] =

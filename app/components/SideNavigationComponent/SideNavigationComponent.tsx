@@ -6,13 +6,17 @@ export default function SideNavigationComponent({
   navOptionSelected,
 }: SideNavigationComponentProps) {
   return (
-    <div className="side-navigation-component">
+    <div
+      className="side-navigation-component"
+      data-testid="side-navigation-component"
+    >
       <span className="side-navigation-component__title">PlanetsApp</span>
       <Link href="/planets">
         <button
           className={`side-navigation-component__button${
             navOptionSelected === NavigationOptions.Planets ? "--selected" : ""
           }`}
+          data-testid="side-navigation-component-planets-button"
         >
           <span className="side-navigation-component__button--text">
             Planets

@@ -1,6 +1,6 @@
 import PlanetsComponent from "./components/PlanetsComponent/PlanetsComponent";
 
-export default async function Home() {
+export default function Home() {
   return (
     <main className="page" data-testid="page-class">
       <PlanetsComponent planetsData={[]} favortiePlanetsData={[]} />
