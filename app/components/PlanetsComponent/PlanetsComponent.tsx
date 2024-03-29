@@ -1,13 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import { PlanetComponentProps } from "./PlanetsComponent.props";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { NavigationOptions } from "@/app/models/NavigationOptions";
+import { PlanetsComponentProps } from "./PlanetsComponent.props";
 import ContentComponent from "../ContentComponent/ContentComponent";
 import PopUpModalComponent from "../PopUpModalComponent/PopUpModalComponent";
 import SideNavigationComponent from "../SideNavigationComponent/SideNavigationComponent";
 
-export default function PlanetComponent({ planetsData }: PlanetComponentProps) {
+export default function PlanetsComponent({
+  planetsData,
+  planetId,
+}: PlanetsComponentProps) {
+  const pathname = usePathname();
   const [isRemoveModalOpen, setIsRemoveModalOpen] = useState<boolean>(false);
+  const [navOptionSelected, setNavOptionSelected] = useState<NavigationOptions>(
+    NavigationOptions.None
+  );
+
+  useEffect(() => {
+    if (pathname.includes("/planets")) {
+      setNavOptionSelected(NavigationOptions.Planets);
+    } else if (pathname === "/favorites") {
+      setNavOptionSelected(NavigationOptions.Favorites);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="planets-component">
@@ -16,7 +34,7 @@ export default function PlanetComponent({ planetsData }: PlanetComponentProps) {
           isRemoveModalOpen ? "backdrop-nav" : "nav"
         }`}
       >
-        <SideNavigationComponent />
+        <SideNavigationComponent navOptionSelected={navOptionSelected} />
       </nav>
       <div
         className={`planets-component__${
@@ -26,6 +44,8 @@ export default function PlanetComponent({ planetsData }: PlanetComponentProps) {
         <ContentComponent
           planetsData={planetsData}
           setIsRemoveModalOpen={setIsRemoveModalOpen}
+          navOptionSelected={navOptionSelected}
+          planetId={planetId}
         />
       </div>
       {isRemoveModalOpen ? (

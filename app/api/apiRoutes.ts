@@ -2,6 +2,7 @@ import { PlanetData } from "../models/planetData";
 import { PlanetDetailData } from "../models/planetDetailData";
 import { PlanetsApiData } from "../models/planetsApiData";
 import { PlanetsResultApiData } from "../models/planetsResultApiData";
+import { getPlanetData } from "../utils/mapperUtils";
 
 export const getPlanets = async (): Promise<PlanetData[]> => {
   const response: Response = await fetch(
@@ -20,20 +21,6 @@ export const getPlanets = async (): Promise<PlanetData[]> => {
     (planetResultApiData: PlanetsResultApiData) =>
       getPlanetData(planetResultApiData)
   );
-
-  return planetData;
-};
-
-export const getPlanetData = (
-  planetsResultApiData: PlanetsResultApiData
-): PlanetData => {
-  let planetData: PlanetData = {
-    name: planetsResultApiData.name,
-    climate: planetsResultApiData.climate,
-    diameter: planetsResultApiData.diameter,
-    population: planetsResultApiData.population,
-    favorite: false,
-  };
 
   return planetData;
 };

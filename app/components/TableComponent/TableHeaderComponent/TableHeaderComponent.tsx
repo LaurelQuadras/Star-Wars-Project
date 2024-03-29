@@ -48,7 +48,11 @@ export default function TableHeaderComponent({
       {tableHeaderColumns.map((tableHeaderColumn: string, index: number) => (
         <div
           key={index}
-          className="table-header-component__column"
+          className={`table-header-component__column${
+            ["Diameter", "Population"].includes(tableHeaderColumn)
+              ? "--sortable"
+              : ""
+          }`}
           onClick={() =>
             onTableSortClick(tableHeaderColumn as keyof PlanetData)
           }

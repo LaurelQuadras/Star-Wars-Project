@@ -1,5 +1,6 @@
 import { PlanetData } from "@/app/models/planetData";
 
-export interface PlanetComponentProps {
+export interface PlanetsComponentProps {
   planetsData: PlanetData[];
+  planetId?: number;
 }

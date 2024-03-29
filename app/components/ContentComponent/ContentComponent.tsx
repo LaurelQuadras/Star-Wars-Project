@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { getPlanetDataById } from "@/app/api/apiRoutes";
-import { PlanetData } from "@/app/models/planetData";
+import { NavigationOptions } from "@/app/models/NavigationOptions";
 import { PlanetDetailData } from "@/app/models/planetDetailData";
 import { ContentComponentProps } from "./ContentComponent.props";
 import FavoriteListComponent from "../FavoriteListComponent/FavoriteListComponent";
@@ -12,35 +12,52 @@ import TableComponent from "../TableComponent/TableComponent";
 export default function ContentComponent({
   planetsData,
   setIsRemoveModalOpen,
+  navOptionSelected,
+  planetId,
 }: ContentComponentProps) {
-  const [planetDetailData, setPlanetDetailData] = useState<PlanetDetailData>();
+  const [planetDetailData, setPlanetDetailData] = useState<PlanetDetailData>({
+    name: "",
+    climate: "",
+    gravity: "",
+    terrain: "",
+  });
 
-  const onTableRecordClick = (planetName: string): void => {
-    const planetSelected: PlanetData = planetsData.filter(
-      (planetData: PlanetData) => planetData.name === planetName
-    )[0];
-    const planetIndex: number = planetsData.indexOf(planetSelected);
-    getPlanetDetailData(planetIndex);
-  };
+  useEffect(() => {
+    planetId && getPlanetDetailData(planetId);
+  }, [planetId]);
 
   const getPlanetDetailData = async (planetIndex: number): Promise<void> => {
     const planetDetailData: PlanetDetailData = await getPlanetDataById(
-      planetIndex + 1
+      planetIndex
     );
     setPlanetDetailData(planetDetailData);
+  };
+
+  const renderPageContent = (): ReactNode => {
+    return navOptionSelected === NavigationOptions.Planets ? (
+      <TableComponent planetsData={planetsData} />
+    ) : navOptionSelected === NavigationOptions.Favorites ? (
+      <FavoriteListComponent setIsRemoveModalOpen={setIsRemoveModalOpen} />
+    ) : null;
+  };
+
+  const renderPageTitle = (): string => {
+    return navOptionSelected === NavigationOptions.Planets
+      ? "Planets"
+      : navOptionSelected === NavigationOptions.Favorites
+      ? "Favorites"
+      : "";
   };
 
   return (
     <div className="content-component">
       <div className="content-component__data">
-        <span className="content-component__data__text">Planets</span>
-        {/* <TableComponent
-          planetsData={planetsData}
-          onTableRecordClick={onTableRecordClick}
-        /> */}
-        <FavoriteListComponent setIsRemoveModalOpen={setIsRemoveModalOpen} />
+        <span className="content-component__data__text">
+          {renderPageTitle()}
+        </span>
+        {renderPageContent()}
       </div>
-      {planetDetailData && (
+      {planetId && (
         <div className="content-component__detail">
           <PlanetDetailComponent planetDetailData={planetDetailData} />
         </div>

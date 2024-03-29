@@ -11,6 +11,11 @@
     display: flex;
     align-items: center;
 
+    &--sortable {
+      @extend .table-header-component__column;
+      cursor: pointer;
+    }
+
     &--text {
       @include text-properties(400, 14px, 16px, $darkGray);
     }
