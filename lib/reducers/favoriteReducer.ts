@@ -1,16 +1,27 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { TableHeaderSortOptions } from "@/app/models/tableHeaderSortOptions";
 
 export type PlanetStoreInfo = {
   id: number;
   name: string;
 };
 
+export type SortOptionStoreInfo = {
+  sortField: string;
+  sortDirection: TableHeaderSortOptions;
+};
+
 type FavoritesType = {
   favoriteList: PlanetStoreInfo[];
+  sortOption: SortOptionStoreInfo;
 };
 
 export const initialState: FavoritesType = {
   favoriteList: [],
+  sortOption: {
+    sortField: "",
+    sortDirection: TableHeaderSortOptions.asc,
+  },
 };
 
 export const favoriteReducer = createSlice({
@@ -36,15 +47,25 @@ export const favoriteReducer = createSlice({
           planetStoreValue.name !== action.payload
       );
     },
+    setSortFieldValues: (slice: FavoritesType, action) => {
+      slice.sortOption = action.payload;
+    },
   },
 });
 
-export const { updateFavoriteList, removePlanetFromFavorite } =
-  favoriteReducer.actions;
+export const {
+  updateFavoriteList,
+  removePlanetFromFavorite,
+  setSortFieldValues,
+} = favoriteReducer.actions;
 
 const sliceSelector = (state: any): FavoritesType => state.favoriteReducer;
 
 export const getFavoritesList = createSelector(
   sliceSelector,
   (slice: FavoritesType): PlanetStoreInfo[] => slice.favoriteList
+);
+export const getSortingFieldValues = createSelector(
+  sliceSelector,
+  (slice: FavoritesType): SortOptionStoreInfo => slice.sortOption
 );

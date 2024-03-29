@@ -26,5 +26,5 @@ $darkRed: #be2f2f;
 
 .page {
   display: flex;
-  height: fit-content;
+  min-height: 100vh;
 }

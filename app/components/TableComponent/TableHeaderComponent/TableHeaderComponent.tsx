@@ -1,15 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PlanetData } from "@/app/models/planetData";
 import { TableHeaderSortOptions } from "@/app/models/tableHeaderSortOptions";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import {
+  SortOptionStoreInfo,
+  getSortingFieldValues,
+  setSortFieldValues,
+} from "@/lib/reducers/favoriteReducer";
 import { TableHeaderComponentProps } from "./TableHeaderComponent.props";
 
 export default function TableHeaderComponent({
   sortPlanetsList,
 }: TableHeaderComponentProps) {
+  const dispatch = useAppDispatch();
+  const sortValues: SortOptionStoreInfo = useAppSelector(getSortingFieldValues);
+
   const [selectedColumn, setSelectedColumn] = useState<keyof PlanetData>();
   const [sortOption, setSortOption] = useState<TableHeaderSortOptions>(
     TableHeaderSortOptions.asc
   );
+
+  useEffect(() => {
+    const { sortField, sortDirection } = sortValues;
+    if (sortField !== "") {
+      setSelectedColumn(sortField as keyof PlanetData);
+      setSortOption(sortDirection);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const tableHeaderColumns: string[] = [
     "Name",
@@ -28,12 +46,24 @@ export default function TableHeaderComponent({
       selectedColumn === column &&
       sortOption === TableHeaderSortOptions.asc
     ) {
+      dispatch(
+        setSortFieldValues({
+          sortField: column,
+          sortDirection: TableHeaderSortOptions.desc,
+        })
+      );
       setSortOption(TableHeaderSortOptions.desc);
       sortPlanetsList(
         column.toLowerCase() as keyof PlanetData,
         TableHeaderSortOptions.desc
       );
     } else {
+      dispatch(
+        setSortFieldValues({
+          sortField: column,
+          sortDirection: TableHeaderSortOptions.asc,
+        })
+      );
       setSortOption(TableHeaderSortOptions.asc);
       sortPlanetsList(
         column.toLowerCase() as keyof PlanetData,

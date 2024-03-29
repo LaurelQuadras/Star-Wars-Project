@@ -8,15 +8,25 @@ export const filterSortPlanetsList = (
 ): PlanetData[] => {
   let sortedPlanetsList: PlanetData[] = [];
 
+  const invalidValuesPlanetList: PlanetData[] = planetsList.filter(
+    (pp: PlanetData) => Number.isNaN(Number(pp[column]))
+  );
+
+  const validValuesPlanetList: PlanetData[] = planetsList.filter(
+    (pp: PlanetData) => !Number.isNaN(Number(pp[column]))
+  );
+
   sortOption === TableHeaderSortOptions.desc
-    ? (sortedPlanetsList = [...planetsList].sort(
+    ? (sortedPlanetsList = [...validValuesPlanetList].sort(
         (planetOne: PlanetData, planetTwo: PlanetData) =>
           Number(planetTwo[column]) - Number(planetOne[column])
       ))
-    : (sortedPlanetsList = [...planetsList].sort(
+    : (sortedPlanetsList = [...validValuesPlanetList].sort(
         (planetOne: PlanetData, planetTwo: PlanetData) =>
           Number(planetOne[column]) - Number(planetTwo[column])
       ));
 
-  return sortedPlanetsList;
+  return sortOption === TableHeaderSortOptions.desc
+    ? [...invalidValuesPlanetList, ...sortedPlanetsList]
+    : [...sortedPlanetsList, ...invalidValuesPlanetList];
 };
