@@ -6,6 +6,6 @@ export interface ContentComponentProps {
   planetsData: PlanetData[];
   favortiePlanetsData: PlanetDetailData[];
   navOptionSelected: NavigationOptions;
-  planetId?: number;
+  planetDetailData?: PlanetDetailData;
   openRemoveModal: (_planetName: string) => void;
 }

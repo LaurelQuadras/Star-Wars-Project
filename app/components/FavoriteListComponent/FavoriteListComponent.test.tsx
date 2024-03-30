@@ -18,16 +18,16 @@ const getRender = ({
 describe("FavoriteListComponent tests", () => {
   const favortiePlanetsData: PlanetDetailData[] = [
     {
-      name: "test-name",
-      climate: "test-climate",
-      gravity: "test-gravity",
-      terrain: "test-terrain",
+      name: "test-name-1",
+      climate: "test-climate-1",
+      gravity: "test-gravity-1",
+      terrain: "test-terrain-1",
     },
     {
-      name: "test-name",
-      climate: "test-climate",
-      gravity: "test-gravity",
-      terrain: "test-terrain",
+      name: "test-name-2",
+      climate: "test-climate-2",
+      gravity: "test-gravity-2",
+      terrain: "test-terrain-2",
     },
   ];
   const openRemoveModal = jest.fn();

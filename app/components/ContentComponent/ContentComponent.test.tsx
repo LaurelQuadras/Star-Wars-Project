@@ -10,7 +10,7 @@ const getRender = ({
   planetsData,
   favortiePlanetsData,
   navOptionSelected,
-  planetId,
+  planetDetailData,
   openRemoveModal,
 }: ContentComponentProps): RenderResult => {
   return render(
@@ -19,7 +19,7 @@ const getRender = ({
         planetsData={planetsData}
         favortiePlanetsData={favortiePlanetsData}
         navOptionSelected={navOptionSelected}
-        planetId={planetId}
+        planetDetailData={planetDetailData}
         openRemoveModal={openRemoveModal}
       />
     </StoreProvider>
@@ -45,7 +45,7 @@ describe("ContentComponent tests", () => {
   const planetsData: PlanetData[] = [];
   const favortiePlanetsData: PlanetDetailData[] = [];
   const navOptionSelected: NavigationOptions = NavigationOptions.None;
-  const planetId: number | undefined = undefined;
+  const planetDetailData: PlanetDetailData | undefined = undefined;
   const openRemoveModal = jest.fn();
 
   it("renders ContentComponent when none of the options are selected", () => {
@@ -53,7 +53,7 @@ describe("ContentComponent tests", () => {
       planetsData,
       favortiePlanetsData,
       navOptionSelected,
-      planetId,
+      planetDetailData,
       openRemoveModal,
     });
 
@@ -87,7 +87,7 @@ describe("ContentComponent tests", () => {
       planetsData,
       favortiePlanetsData,
       navOptionSelected,
-      planetId,
+      planetDetailData,
       openRemoveModal,
     });
 
@@ -131,14 +131,13 @@ describe("ContentComponent tests", () => {
       },
     ];
     const navOptionSelected: NavigationOptions = NavigationOptions.Planets;
-    const planetId: number | undefined = 1;
 
     await act(() => {
       getRender({
         planetsData,
         favortiePlanetsData,
         navOptionSelected,
-        planetId,
+        planetDetailData,
         openRemoveModal,
       });
     });
@@ -167,7 +166,7 @@ describe("ContentComponent tests", () => {
       planetsData,
       favortiePlanetsData,
       navOptionSelected,
-      planetId,
+      planetDetailData,
       openRemoveModal,
     });
 

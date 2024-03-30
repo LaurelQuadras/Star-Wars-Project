@@ -1,9 +1,7 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
-import { getPlanetDataById } from "@/app/api/apiRoutes";
+import { ReactNode } from "react";
 import { NavigationOptions } from "@/app/models/NavigationOptions";
-import { PlanetDetailData } from "@/app/models/planetDetailData";
 import { ContentComponentProps } from "./ContentComponent.props";
 import FavoriteListComponent from "../FavoriteListComponent/FavoriteListComponent";
 import PlanetDetailComponent from "../PlanetDetailComponent/PlanetDetailComponent";
@@ -13,27 +11,9 @@ export default function ContentComponent({
   planetsData,
   favortiePlanetsData,
   navOptionSelected,
-  planetId,
+  planetDetailData,
   openRemoveModal,
 }: ContentComponentProps) {
-  const [planetDetailData, setPlanetDetailData] = useState<PlanetDetailData>({
-    name: "",
-    climate: "",
-    gravity: "",
-    terrain: "",
-  });
-
-  useEffect(() => {
-    planetId && getPlanetDetailData(planetId);
-  }, [planetId]);
-
-  const getPlanetDetailData = async (planetIndex: number): Promise<void> => {
-    const planetDetailData: PlanetDetailData = await getPlanetDataById(
-      planetIndex
-    );
-    setPlanetDetailData(planetDetailData);
-  };
-
   const renderPageContent = (): ReactNode => {
     return navOptionSelected === NavigationOptions.Planets ? (
       <TableComponent planetsData={planetsData} />
@@ -77,7 +57,7 @@ export default function ContentComponent({
         </span>
         {renderPageContent()}
       </div>
-      {planetId && (
+      {planetDetailData && (
         <div
           className="content-component__detail"
           data-testid="content-component-detail"

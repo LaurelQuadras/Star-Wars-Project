@@ -4,5 +4,5 @@ import { PlanetDetailData } from "@/app/models/planetDetailData";
 export interface PlanetsComponentProps {
   planetsData: PlanetData[];
   favortiePlanetsData: PlanetDetailData[];
-  planetId?: number;
+  planetDetailData?: PlanetDetailData;
 }
