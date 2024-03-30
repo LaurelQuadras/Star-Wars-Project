@@ -5,7 +5,7 @@ import { PlanetData } from "../models/planetData";
 export default async function Home() {
   const planetsData: PlanetData[] = await getPlanets();
   return (
-    <main className="page" data-testid="page-class">
+    <main className="page" data-testid="planets-page">
       <PlanetsComponent planetsData={planetsData} favortiePlanetsData={[]} />
     </main>
   );

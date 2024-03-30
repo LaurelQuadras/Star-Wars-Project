@@ -2,7 +2,7 @@ import { PlanetData } from "../models/planetData";
 import { PlanetDetailData } from "../models/planetDetailData";
 import { PlanetsApiData } from "../models/planetsApiData";
 import { PlanetsResultApiData } from "../models/planetsResultApiData";
-import { getPlanetData } from "../utils/mapperUtils";
+import { getPlanetData } from "../utils/mapperUtils/mapperUtils";
 
 export const getPlanets = async (): Promise<PlanetData[]> => {
   const response: Response = await fetch(

@@ -1,5 +1,5 @@
-import { PlanetData } from "../models/planetData";
-import { PlanetsResultApiData } from "../models/planetsResultApiData";
+import { PlanetData } from "../../models/planetData";
+import { PlanetsResultApiData } from "../../models/planetsResultApiData";
 
 export const getPlanetData = (
   planetsResultApiData: PlanetsResultApiData,

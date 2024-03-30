@@ -1,6 +1,13 @@
-import { PlanetData } from "../models/planetData";
-import { TableHeaderSortOptions } from "../models/tableHeaderSortOptions";
+import { PlanetData } from "../../models/planetData";
+import { TableHeaderSortOptions } from "../../models/tableHeaderSortOptions";
 
+/**
+ * Sorts the PlanetData list based on the column and the sorting option selected
+ * @param planetsList
+ * @param column
+ * @param sortOption
+ * @returns the sorted PlanetData list. For descending result, invalid values record are shown at first, followed by valid sorted list. For ascending result, invalid values record are shown at last, preceded by valid sorted list.
+ */
 export const filterSortPlanetsList = (
   planetsList: PlanetData[],
   column: keyof PlanetData,

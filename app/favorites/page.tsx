@@ -35,7 +35,7 @@ export default function Home() {
   };
 
   return (
-    <main className="page" data-testid="page-class">
+    <main className="page" data-testid="favorites-page">
       <PlanetsComponent
         planetsData={[]}
         favortiePlanetsData={favoritePlanetDetailsData}

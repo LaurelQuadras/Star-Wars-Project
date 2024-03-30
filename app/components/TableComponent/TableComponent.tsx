@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { PlanetData } from "@/app/models/planetData";
 import { SortOptionStoreInfo } from "@/app/models/reducerModels";
 import { TableHeaderSortOptions } from "@/app/models/tableHeaderSortOptions";
-import { filterSortPlanetsList } from "@/app/utils/filterSortPlanetsList";
+import { filterSortPlanetsList } from "@/app/utils/filterSortPlanetList/filterSortPlanetsList";
 import { useAppSelector } from "@/lib/hooks";
 import { getSortingFieldValues } from "@/lib/reducers/planetReducer";
 import { TableComponentProps } from "./TableComponent.props";
