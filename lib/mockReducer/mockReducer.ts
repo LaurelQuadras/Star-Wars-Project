@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { planetReducer } from "./reducers/planetReducer";
+import { planetReducer } from "../reducers/planetReducer";
 
 export const makeStore = () => {
   return configureStore({

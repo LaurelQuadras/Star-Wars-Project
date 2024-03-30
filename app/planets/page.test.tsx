@@ -1,12 +1,12 @@
 import { RenderResult, render, screen } from "@testing-library/react";
 import { ReactNode } from "react";
+import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
 import Home from "./page";
 import { PlanetsApiData } from "../models/planetsApiData";
-import StoreProvider from "../StoreProvider";
 
 const getRender = async (): Promise<RenderResult> => {
   const planetsHome: ReactNode = await Home();
-  return render(<StoreProvider>{planetsHome}</StoreProvider>);
+  return render(<MockStoreProvider>{planetsHome}</MockStoreProvider>);
 };
 
 jest.mock("next/navigation", () => {

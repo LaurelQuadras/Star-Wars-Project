@@ -1,6 +1,6 @@
 import { PlanetDetailData } from "@/app/models/planetDetailData";
 
 export interface FavoriteListComponentProps {
-  favortiePlanetsData: PlanetDetailData[];
+  favoritePlanetsData: PlanetDetailData[];
   openRemoveModal: (_planetName: string) => void;
 }

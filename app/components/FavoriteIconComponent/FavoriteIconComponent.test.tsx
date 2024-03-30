@@ -5,17 +5,20 @@ import {
   screen,
 } from "@testing-library/react";
 import { PlanetData } from "@/app/models/planetData";
-import StoreProvider from "@/app/StoreProvider";
+import { PlanetReducerType } from "@/app/models/reducerModels";
+import { TableHeaderSortOptions } from "@/app/models/tableHeaderSortOptions";
+import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
 import FavoriteIconComponent from "./FavoriteIconComponent";
 import { FavoriteIconComponentProps } from "./FavoriteIconComponent.props";
 
-const getRender = ({
-  planetData,
-}: FavoriteIconComponentProps): RenderResult => {
+const getRender = (
+  initialReduxState: PlanetReducerType,
+  { planetData }: FavoriteIconComponentProps
+): RenderResult => {
   return render(
-    <StoreProvider>
+    <MockStoreProvider initialState={initialReduxState}>
       <FavoriteIconComponent planetData={planetData} />
-    </StoreProvider>
+    </MockStoreProvider>
   );
 };
 
@@ -29,14 +32,22 @@ describe("FavoriteIconComponent tests", () => {
     favorite: false,
   };
 
+  const initialReduxState: PlanetReducerType = {
+    favoriteList: [],
+    sortOption: {
+      sortField: "",
+      sortDirection: TableHeaderSortOptions.asc,
+    },
+  };
+
   it("renders FavoriteIconComponent", () => {
-    getRender({ planetData });
+    getRender(initialReduxState, { planetData });
 
     expect(screen.getByTestId("favorite-icon-component")).toBeDefined();
   });
 
   it("renders FavoriteIconComponent for favorite as false and clicks on favorite icon to toggle favorite status", () => {
-    getRender({ planetData });
+    getRender(initialReduxState, { planetData });
 
     fireEvent.click(screen.getByTestId("favorite-icon-component"));
 
@@ -52,13 +63,30 @@ describe("FavoriteIconComponent tests", () => {
     );
     planetDataForFavoriteAsTrue.favorite = true;
 
-    getRender({ planetData: planetDataForFavoriteAsTrue });
+    getRender(initialReduxState, { planetData: planetDataForFavoriteAsTrue });
 
     fireEvent.click(screen.getByTestId("favorite-icon-component"));
 
     expect(screen.getByTestId("favorite-icon-component-icon")).toHaveAttribute(
       "src",
       "/icons/starIconUnchecked.svg"
+    );
+  });
+
+  it("renders FavoriteIconComponent where the planet is part of the favorite list in redux store", () => {
+    const initialReduxState: PlanetReducerType = {
+      favoriteList: [{ id: 1, name: "test-name" }],
+      sortOption: {
+        sortField: "",
+        sortDirection: TableHeaderSortOptions.asc,
+      },
+    };
+
+    getRender(initialReduxState, { planetData });
+
+    expect(screen.getByTestId("favorite-icon-component-icon")).toHaveAttribute(
+      "src",
+      "/icons/starIconChecked.svg"
     );
   });
 });

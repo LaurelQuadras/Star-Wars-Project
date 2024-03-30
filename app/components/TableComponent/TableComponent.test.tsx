@@ -3,17 +3,23 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
 } from "@testing-library/react";
 import { PlanetData } from "@/app/models/planetData";
-import StoreProvider from "@/app/StoreProvider";
+import { PlanetReducerType } from "@/app/models/reducerModels";
+import { TableHeaderSortOptions } from "@/app/models/tableHeaderSortOptions";
+import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
 import TableComponent from "./TableComponent";
 import { TableComponentProps } from "./TableComponent.props";
 
-const getRender = ({ planetsData }: TableComponentProps): RenderResult => {
+const getRender = (
+  initialReduxState: PlanetReducerType,
+  { planetsData }: TableComponentProps
+): RenderResult => {
   return render(
-    <StoreProvider>
+    <MockStoreProvider initialState={initialReduxState}>
       <TableComponent planetsData={planetsData} />
-    </StoreProvider>
+    </MockStoreProvider>
   );
 };
 
@@ -52,8 +58,16 @@ describe("TableComponent tests", () => {
     },
   ];
 
+  const initialReduxState: PlanetReducerType = {
+    favoriteList: [],
+    sortOption: {
+      sortField: "",
+      sortDirection: TableHeaderSortOptions.asc,
+    },
+  };
+
   it("renders TableComponent", () => {
-    getRender({ planetsData });
+    getRender(initialReduxState, { planetsData });
 
     expect(screen.getByTestId("table-component")).toBeDefined();
   });
@@ -65,7 +79,7 @@ describe("TableComponent tests", () => {
     planetsDataForDiameter[0].diameter = "50";
     planetsDataForDiameter[1].diameter = "25";
 
-    getRender({ planetsData: planetsDataForDiameter });
+    getRender(initialReduxState, { planetsData: planetsDataForDiameter });
 
     fireEvent.click(screen.getByTestId("table-header-component-Diameter"));
 
@@ -84,7 +98,7 @@ describe("TableComponent tests", () => {
     planetsDataForPopulation[0].population = "50";
     planetsDataForPopulation[1].population = "25";
 
-    getRender({ planetsData: planetsDataForPopulation });
+    getRender(initialReduxState, { planetsData: planetsDataForPopulation });
 
     fireEvent.click(screen.getByTestId("table-header-component-Population"));
 
@@ -94,5 +108,34 @@ describe("TableComponent tests", () => {
     expect(
       screen.getAllByTestId("table-record-component-population-column")[1]
     ).toHaveTextContent(planetsDataForPopulation[0].population);
+  });
+
+  it("renders TableComponent where there is a valid sort option in redux store, it sorts the planetsData and displays it in UI", () => {
+    const initialReduxState: PlanetReducerType = {
+      favoriteList: [],
+      sortOption: {
+        sortField: "Diameter",
+        sortDirection: TableHeaderSortOptions.asc,
+      },
+    };
+
+    const planetsDataForPopulation: PlanetData[] = JSON.parse(
+      JSON.stringify(planetsData)
+    );
+    planetsDataForPopulation[0].population = "50";
+    planetsDataForPopulation[1].population = "25";
+
+    getRender(initialReduxState, { planetsData: planetsDataForPopulation });
+
+    waitFor(() =>
+      expect(
+        screen.getAllByTestId("table-record-component-population-column")[0]
+      ).toHaveTextContent(planetsDataForPopulation[1].population)
+    );
+    waitFor(() =>
+      expect(
+        screen.getAllByTestId("table-record-component-population-column")[1]
+      ).toHaveTextContent(planetsDataForPopulation[0].population)
+    );
   });
 });

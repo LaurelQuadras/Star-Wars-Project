@@ -1,7 +1,7 @@
 import { RenderResult, render, screen } from "@testing-library/react";
 import { ReactNode } from "react";
 import { PlanetsApiData } from "@/app/models/planetsApiData";
-import StoreProvider from "@/app/StoreProvider";
+import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
 import Home from "./page";
 
 const getRender = async ({
@@ -10,7 +10,7 @@ const getRender = async ({
   params: { planetId: number };
 }): Promise<RenderResult> => {
   const planetsHome: ReactNode = await Home({ params: { planetId } });
-  return render(<StoreProvider>{planetsHome}</StoreProvider>);
+  return render(<MockStoreProvider>{planetsHome}</MockStoreProvider>);
 };
 
 jest.mock("next/navigation", () => {
@@ -60,7 +60,7 @@ describe("PlanetsPage tests", () => {
 
   const planetId: number = 1;
 
-  it("renders Planets Page", async () => {
+  it("renders Planets Page with detail component", async () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve(planetsApiData),

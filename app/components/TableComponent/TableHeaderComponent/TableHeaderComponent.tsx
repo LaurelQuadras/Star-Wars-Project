@@ -101,6 +101,7 @@ export default function TableHeaderComponent({
                   ? "-icon"
                   : "-icon-rotate"
               }`}
+              data-testid={`table-header-component-sort-icon-${tableHeaderColumn}`}
             >
               <img src="/icons/arrowIcon.svg" alt="sort icon" />
             </picture>

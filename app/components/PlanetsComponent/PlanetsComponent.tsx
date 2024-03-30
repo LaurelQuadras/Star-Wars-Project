@@ -13,7 +13,7 @@ import SideNavigationComponent from "../SideNavigationComponent/SideNavigationCo
 
 export default function PlanetsComponent({
   planetsData,
-  favortiePlanetsData,
+  favoritePlanetsData,
   planetDetailData,
 }: PlanetsComponentProps) {
   const dispatch = useAppDispatch();
@@ -24,7 +24,7 @@ export default function PlanetsComponent({
     NavigationOptions.None
   );
   const [favoritesPlanetsList, setFavoritePlanetsList] =
-    useState<PlanetDetailData[]>(favortiePlanetsData);
+    useState<PlanetDetailData[]>(favoritePlanetsData);
 
   useEffect(() => {
     if (pathname.includes("/planets")) {
@@ -36,8 +36,8 @@ export default function PlanetsComponent({
   }, []);
 
   useEffect(() => {
-    setFavoritePlanetsList(favortiePlanetsData);
-  }, [favortiePlanetsData]);
+    setFavoritePlanetsList(favoritePlanetsData);
+  }, [favoritePlanetsData]);
 
   const removePlanetFromFavorite = (): void => {
     const newFavoritePlanetsList: PlanetDetailData[] =
@@ -72,7 +72,7 @@ export default function PlanetsComponent({
       >
         <ContentComponent
           planetsData={planetsData}
-          favortiePlanetsData={favoritesPlanetsList}
+          favoritePlanetsData={favoritesPlanetsList}
           navOptionSelected={navOptionSelected}
           planetDetailData={planetDetailData}
           openRemoveModal={openRemoveModal}

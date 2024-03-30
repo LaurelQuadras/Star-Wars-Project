@@ -5,15 +5,15 @@ import {
   screen,
 } from "@testing-library/react";
 import { PlanetData } from "@/app/models/planetData";
-import StoreProvider from "@/app/StoreProvider";
+import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
 import TableRecordComponent from "./TableRecordComponent";
 import { TableRecordComponentProps } from "./TableRecordComponent.props";
 
 const getRender = ({ planetData }: TableRecordComponentProps): RenderResult => {
   return render(
-    <StoreProvider>
+    <MockStoreProvider>
       <TableRecordComponent planetData={planetData} />
-    </StoreProvider>
+    </MockStoreProvider>
   );
 };
 

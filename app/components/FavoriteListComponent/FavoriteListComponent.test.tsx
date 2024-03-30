@@ -4,19 +4,19 @@ import FavoriteListComponent from "./FavoriteListComponent";
 import { FavoriteListComponentProps } from "./FavoriteListComponent.props";
 
 const getRender = ({
-  favortiePlanetsData,
+  favoritePlanetsData,
   openRemoveModal,
 }: FavoriteListComponentProps): RenderResult => {
   return render(
     <FavoriteListComponent
-      favortiePlanetsData={favortiePlanetsData}
+      favoritePlanetsData={favoritePlanetsData}
       openRemoveModal={openRemoveModal}
     />
   );
 };
 
 describe("FavoriteListComponent tests", () => {
-  const favortiePlanetsData: PlanetDetailData[] = [
+  const favoritePlanetsData: PlanetDetailData[] = [
     {
       name: "test-name-1",
       climate: "test-climate-1",
@@ -33,14 +33,14 @@ describe("FavoriteListComponent tests", () => {
   const openRemoveModal = jest.fn();
 
   it("renders FavoriteListComponent", () => {
-    getRender({ favortiePlanetsData, openRemoveModal });
+    getRender({ favoritePlanetsData, openRemoveModal });
 
     expect(screen.getByTestId("favorite-list-component")).toBeDefined();
   });
 
   it("renders FavoriteListComponent with no favorite vehicles", () => {
-    const favortiePlanetsData: PlanetDetailData[] = [];
-    getRender({ favortiePlanetsData, openRemoveModal });
+    const favoritePlanetsData: PlanetDetailData[] = [];
+    getRender({ favoritePlanetsData, openRemoveModal });
 
     expect(
       screen.getByTestId("favorite-list-component-no-favorites")

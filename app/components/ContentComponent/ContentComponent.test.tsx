@@ -2,27 +2,27 @@ import { RenderResult, act, render, screen } from "@testing-library/react";
 import { NavigationOptions } from "@/app/models/NavigationOptions";
 import { PlanetData } from "@/app/models/planetData";
 import { PlanetDetailData } from "@/app/models/planetDetailData";
-import StoreProvider from "@/app/StoreProvider";
+import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
 import ContentComponent from "./ContentComponent";
 import { ContentComponentProps } from "./ContentComponent.props";
 
 const getRender = ({
   planetsData,
-  favortiePlanetsData,
+  favoritePlanetsData,
   navOptionSelected,
   planetDetailData,
   openRemoveModal,
 }: ContentComponentProps): RenderResult => {
   return render(
-    <StoreProvider>
+    <MockStoreProvider>
       <ContentComponent
         planetsData={planetsData}
-        favortiePlanetsData={favortiePlanetsData}
+        favoritePlanetsData={favoritePlanetsData}
         navOptionSelected={navOptionSelected}
         planetDetailData={planetDetailData}
         openRemoveModal={openRemoveModal}
       />
-    </StoreProvider>
+    </MockStoreProvider>
   );
 };
 
@@ -43,7 +43,7 @@ jest.mock("next/navigation", () => {
 
 describe("ContentComponent tests", () => {
   const planetsData: PlanetData[] = [];
-  const favortiePlanetsData: PlanetDetailData[] = [];
+  const favoritePlanetsData: PlanetDetailData[] = [];
   const navOptionSelected: NavigationOptions = NavigationOptions.None;
   const planetDetailData: PlanetDetailData | undefined = undefined;
   const openRemoveModal = jest.fn();
@@ -51,7 +51,7 @@ describe("ContentComponent tests", () => {
   it("renders ContentComponent when none of the options are selected", () => {
     getRender({
       planetsData,
-      favortiePlanetsData,
+      favoritePlanetsData,
       navOptionSelected,
       planetDetailData,
       openRemoveModal,
@@ -85,7 +85,7 @@ describe("ContentComponent tests", () => {
 
     getRender({
       planetsData,
-      favortiePlanetsData,
+      favoritePlanetsData,
       navOptionSelected,
       planetDetailData,
       openRemoveModal,
@@ -97,21 +97,6 @@ describe("ContentComponent tests", () => {
   });
 
   it("renders ContentComponent for Planets page with Planet Detail section present", async () => {
-    const planetDetailData: PlanetDetailData = {
-      name: "test-name",
-      climate: "test-climate",
-      gravity: "test-gravity",
-      terrain: "test-terrain",
-    };
-
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(planetDetailData),
-        status: 200,
-        ok: true,
-      })
-    ) as jest.Mock;
-
     const planetsData: PlanetData[] = [
       {
         id: 1,
@@ -131,11 +116,17 @@ describe("ContentComponent tests", () => {
       },
     ];
     const navOptionSelected: NavigationOptions = NavigationOptions.Planets;
+    const planetDetailData: PlanetDetailData | undefined = {
+      name: "test-name-1",
+      climate: "test-climate-1",
+      gravity: "test-gravity-1",
+      terrain: "test-terrain-1",
+    };
 
     await act(() => {
       getRender({
         planetsData,
-        favortiePlanetsData,
+        favoritePlanetsData,
         navOptionSelected,
         planetDetailData,
         openRemoveModal,
@@ -146,7 +137,7 @@ describe("ContentComponent tests", () => {
   });
 
   it("renders ContentComponent for Favorites page", () => {
-    const favortiePlanetsData: PlanetDetailData[] = [
+    const favoritePlanetsData: PlanetDetailData[] = [
       {
         name: "test-name",
         climate: "test-climate",
@@ -164,7 +155,7 @@ describe("ContentComponent tests", () => {
 
     getRender({
       planetsData,
-      favortiePlanetsData,
+      favoritePlanetsData,
       navOptionSelected,
       planetDetailData,
       openRemoveModal,

@@ -3,6 +3,6 @@ import { PlanetDetailData } from "@/app/models/planetDetailData";
 
 export interface PlanetsComponentProps {
   planetsData: PlanetData[];
-  favortiePlanetsData: PlanetDetailData[];
+  favoritePlanetsData: PlanetDetailData[];
   planetDetailData?: PlanetDetailData;
 }

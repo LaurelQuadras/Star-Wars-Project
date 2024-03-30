@@ -6,7 +6,7 @@ import { FavoriteListComponentProps } from "./FavoriteListComponent.props";
 import FavoriteComponent from "../FavoriteComponent/FavoriteComponent";
 
 export default function FavoriteListComponent({
-  favortiePlanetsData,
+  favoritePlanetsData,
   openRemoveModal,
 }: FavoriteListComponentProps) {
   const noFavoritesContent = (): ReactNode => {
@@ -25,8 +25,8 @@ export default function FavoriteListComponent({
       className="favorite-list-component"
       data-testid="favorite-list-component"
     >
-      {favortiePlanetsData.length === 0 ? noFavoritesContent() : null}
-      {favortiePlanetsData.map(
+      {favoritePlanetsData.length === 0 ? noFavoritesContent() : null}
+      {favoritePlanetsData.map(
         (planetDetaildata: PlanetDetailData, index: number) => (
           <div key={index} className="favorite-list-component__record">
             <FavoriteComponent

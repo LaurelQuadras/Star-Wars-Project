@@ -9,7 +9,7 @@ import TableComponent from "../TableComponent/TableComponent";
 
 export default function ContentComponent({
   planetsData,
-  favortiePlanetsData,
+  favoritePlanetsData,
   navOptionSelected,
   planetDetailData,
   openRemoveModal,
@@ -19,7 +19,7 @@ export default function ContentComponent({
       <TableComponent planetsData={planetsData} />
     ) : navOptionSelected === NavigationOptions.Favorites ? (
       <FavoriteListComponent
-        favortiePlanetsData={favortiePlanetsData}
+        favoritePlanetsData={favoritePlanetsData}
         openRemoveModal={openRemoveModal}
       />
     ) : (

@@ -1,12 +1,12 @@
 import { render, RenderResult, screen } from "@testing-library/react";
+import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
 import Page from "./page";
-import StoreProvider from "./StoreProvider";
 
 const getRender = (): RenderResult => {
   return render(
-    <StoreProvider>
+    <MockStoreProvider>
       <Page />
-    </StoreProvider>
+    </MockStoreProvider>
   );
 };
 

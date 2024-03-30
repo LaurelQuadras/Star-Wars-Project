@@ -4,7 +4,7 @@ import { PlanetDetailData } from "@/app/models/planetDetailData";
 
 export interface ContentComponentProps {
   planetsData: PlanetData[];
-  favortiePlanetsData: PlanetDetailData[];
+  favoritePlanetsData: PlanetDetailData[];
   navOptionSelected: NavigationOptions;
   planetDetailData?: PlanetDetailData;
   openRemoveModal: (_planetName: string) => void;

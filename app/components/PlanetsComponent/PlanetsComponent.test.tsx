@@ -7,23 +7,23 @@ import {
 } from "@testing-library/react";
 import { PlanetData } from "@/app/models/planetData";
 import { PlanetDetailData } from "@/app/models/planetDetailData";
-import StoreProvider from "@/app/StoreProvider";
+import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
 import PlanetsComponent from "./PlanetsComponent";
 import { PlanetsComponentProps } from "./PlanetsComponent.props";
 
 const getRender = ({
   planetsData,
-  favortiePlanetsData,
+  favoritePlanetsData,
   planetDetailData,
 }: PlanetsComponentProps): RenderResult => {
   return render(
-    <StoreProvider>
+    <MockStoreProvider>
       <PlanetsComponent
         planetsData={planetsData}
-        favortiePlanetsData={favortiePlanetsData}
+        favoritePlanetsData={favoritePlanetsData}
         planetDetailData={planetDetailData}
       />
-    </StoreProvider>
+    </MockStoreProvider>
   );
 };
 
@@ -49,7 +49,7 @@ jest.mock("next/navigation", () => {
 
 describe("PlanetsComponent tests", () => {
   const planetsData: PlanetData[] = [];
-  const favortiePlanetsData: PlanetDetailData[] = [];
+  const favoritePlanetsData: PlanetDetailData[] = [];
   const planetDetailData: PlanetDetailData | undefined = undefined;
 
   const usePathname = jest.spyOn(require("next/navigation"), "usePathname");
@@ -73,7 +73,11 @@ describe("PlanetsComponent tests", () => {
         favorite: false,
       },
     ];
-    getRender({ planetsData, favortiePlanetsData, planetDetailData });
+    getRender({
+      planetsData,
+      favoritePlanetsData,
+      planetDetailData,
+    });
 
     expect(screen.getByTestId("content-component-title")).toHaveTextContent(
       "Planets"
@@ -106,7 +110,11 @@ describe("PlanetsComponent tests", () => {
       terrain: "test-terrain-1",
     };
 
-    getRender({ planetsData, favortiePlanetsData, planetDetailData });
+    getRender({
+      planetsData,
+      favoritePlanetsData,
+      planetDetailData,
+    });
 
     expect(screen.getByTestId("planet-detail-component")).toBeDefined();
   });
@@ -115,8 +123,9 @@ describe("PlanetsComponent tests", () => {
     usePathname.mockImplementation(() => ({
       includes: jest.fn().mockReturnValue(false),
     }));
+    usePathname.mockReturnValueOnce("/favorites");
 
-    const favortiePlanetsData: PlanetDetailData[] = [
+    const favoritePlanetsData: PlanetDetailData[] = [
       {
         name: "test-name-1",
         climate: "test-climate-1",
@@ -130,7 +139,11 @@ describe("PlanetsComponent tests", () => {
         terrain: "test-terrain-2",
       },
     ];
-    getRender({ planetsData, favortiePlanetsData, planetDetailData });
+    getRender({
+      planetsData,
+      favoritePlanetsData,
+      planetDetailData,
+    });
 
     waitFor(() =>
       expect(screen.getByTestId("content-component-title")).toHaveTextContent(
@@ -145,7 +158,7 @@ describe("PlanetsComponent tests", () => {
     }));
     usePathname.mockReturnValueOnce("/favorites");
 
-    const favortiePlanetsData: PlanetDetailData[] = [
+    const favoritePlanetsData: PlanetDetailData[] = [
       {
         name: "test-name-1",
         climate: "test-climate-1",
@@ -159,7 +172,11 @@ describe("PlanetsComponent tests", () => {
         terrain: "test-terrain-2",
       },
     ];
-    getRender({ planetsData, favortiePlanetsData, planetDetailData });
+    getRender({
+      planetsData,
+      favoritePlanetsData,
+      planetDetailData,
+    });
 
     waitFor(() =>
       fireEvent.click(

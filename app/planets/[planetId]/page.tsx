@@ -15,7 +15,7 @@ export default async function Home({
       <PlanetsComponent
         planetsData={planetsData}
         planetDetailData={planetDetailData}
-        favortiePlanetsData={[]}
+        favoritePlanetsData={[]}
       />
     </main>
   );
