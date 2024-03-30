@@ -14,6 +14,7 @@ export default function ContentComponent({
   planetDetailData,
   openRemoveModal,
 }: ContentComponentProps) {
+  //This method is used to show the appropriate UI based on the url of the browser.
   const renderPageContent = (): ReactNode => {
     return navOptionSelected === NavigationOptions.Planets ? (
       <TableComponent planetsData={planetsData} />
@@ -35,6 +36,7 @@ export default function ContentComponent({
       : "";
   };
 
+  // When the user does not enter /planets, /planets/:id, /favorites route, then they would see the below content.
   const renderHomePage = (): ReactNode => {
     return (
       <span

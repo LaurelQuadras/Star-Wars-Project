@@ -17,6 +17,9 @@ export default function FavoriteIconComponent({
 
   const [planet, setPlanet] = useState<PlanetData>(planetData);
 
+  /**
+   * This method is invoked when the user clicks on the star icon. It toggles the favorite state in the UI and dispatches an action to redux to update the favorite list in redux.
+   */
   const onFavoriteIconClick = (): void => {
     setPlanet({ ...planet, favorite: !planet.favorite });
     dispatch(
@@ -27,6 +30,7 @@ export default function FavoriteIconComponent({
     );
   };
 
+  /**If the user comes back from any page to Planets or PlanetsDetail page, then we would assign the appropriate favorite value (from redux store) for planets record based on what the user has applied before. */
   useEffect(() => {
     if (
       favoritePlanetStoreList

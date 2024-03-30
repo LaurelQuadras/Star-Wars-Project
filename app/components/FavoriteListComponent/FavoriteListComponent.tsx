@@ -9,6 +9,7 @@ export default function FavoriteListComponent({
   favoritePlanetsData,
   openRemoveModal,
 }: FavoriteListComponentProps) {
+  //If the user has not selected any favorite planets, then the below content is shown.
   const noFavoritesContent = (): ReactNode => {
     return (
       <span

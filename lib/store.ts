@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { planetReducer } from "./reducers/planetReducer";
 
+//This function configures planetReducer to be added as a reducer object for the redux store.
 export const makeStore = () => {
   return configureStore({
     reducer: {

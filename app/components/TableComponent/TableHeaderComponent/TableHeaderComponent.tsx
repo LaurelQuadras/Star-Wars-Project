@@ -20,6 +20,7 @@ export default function TableHeaderComponent({
     TableHeaderSortOptions.asc
   );
 
+  /**When the user comes back from any page to Planets or PlanetsDetail page, then we would update the UI to reflect the appropriate sorting option (from redux store) which the user has applied before. */
   useEffect(() => {
     const { sortField, sortDirection } = sortValues;
     if (sortField !== "") {
@@ -37,7 +38,12 @@ export default function TableHeaderComponent({
     "Favorite",
   ];
 
-  const onTableSortClick = (column: keyof PlanetData) => {
+  /**
+   *This method is called when the user clicks on the Table Column for Sorting purpose. After verifying that the column is either Diameter or Population, we call sortPlanetList method and passing the column name and sort direction as params. We also update the appropriate states: sortOption and sortFieldValues to reflect it in the UI. And we dispatch the column name and sort direction to redux to store it in global state.
+   * @param column the table header column which the user has selected for sorting.
+   * @returns calls sortPlanetList method, updates the appropriate states and dispatches an action to store the sorting values in redux
+   */
+  const onTableSortClick = (column: keyof PlanetData): void => {
     if (!["Diameter", "Population"].includes(column)) {
       return;
     }

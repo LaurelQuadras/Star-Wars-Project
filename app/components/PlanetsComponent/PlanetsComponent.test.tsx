@@ -5,6 +5,7 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
+import { NavigationOptions } from "@/app/models/NavigationOptions";
 import { PlanetData } from "@/app/models/planetData";
 import { PlanetDetailData } from "@/app/models/planetDetailData";
 import MockStoreProvider from "@/lib/mockReducer/mockStoreProvider";
@@ -15,6 +16,7 @@ const getRender = ({
   planetsData,
   favoritePlanetsData,
   planetDetailData,
+  navOptionSelected,
 }: PlanetsComponentProps): RenderResult => {
   return render(
     <MockStoreProvider>
@@ -22,6 +24,7 @@ const getRender = ({
         planetsData={planetsData}
         favoritePlanetsData={favoritePlanetsData}
         planetDetailData={planetDetailData}
+        navOptionSelected={navOptionSelected}
       />
     </MockStoreProvider>
   );
@@ -39,11 +42,6 @@ jest.mock("next/navigation", () => {
         replace: jest.fn(),
       };
     },
-    usePathname() {
-      return {
-        includes: jest.fn().mockReturnValue(true),
-      };
-    },
   };
 });
 
@@ -51,8 +49,7 @@ describe("PlanetsComponent tests", () => {
   const planetsData: PlanetData[] = [];
   const favoritePlanetsData: PlanetDetailData[] = [];
   const planetDetailData: PlanetDetailData | undefined = undefined;
-
-  const usePathname = jest.spyOn(require("next/navigation"), "usePathname");
+  const navOptionSelected: NavigationOptions = NavigationOptions.Planets;
 
   it("renders PlanetsComponent for Planets page", () => {
     const planetsData: PlanetData[] = [
@@ -77,6 +74,7 @@ describe("PlanetsComponent tests", () => {
       planetsData,
       favoritePlanetsData,
       planetDetailData,
+      navOptionSelected,
     });
 
     expect(screen.getByTestId("content-component-title")).toHaveTextContent(
@@ -114,17 +112,14 @@ describe("PlanetsComponent tests", () => {
       planetsData,
       favoritePlanetsData,
       planetDetailData,
+      navOptionSelected,
     });
 
     expect(screen.getByTestId("planet-detail-component")).toBeDefined();
   });
 
   it("renders PlanetsComponent for Favorites page", () => {
-    usePathname.mockImplementation(() => ({
-      includes: jest.fn().mockReturnValue(false),
-    }));
-    usePathname.mockReturnValueOnce("/favorites");
-
+    const navOptionSelected: NavigationOptions = NavigationOptions.Favorites;
     const favoritePlanetsData: PlanetDetailData[] = [
       {
         name: "test-name-1",
@@ -143,6 +138,7 @@ describe("PlanetsComponent tests", () => {
       planetsData,
       favoritePlanetsData,
       planetDetailData,
+      navOptionSelected,
     });
 
     waitFor(() =>
@@ -153,11 +149,7 @@ describe("PlanetsComponent tests", () => {
   });
 
   it("renders PlanetsComponent for Favorites page, and clicks on remove button to open remove modal and clicks on remove button to remove the planet from favorites", () => {
-    usePathname.mockImplementation(() => ({
-      includes: jest.fn().mockReturnValue(false),
-    }));
-    usePathname.mockReturnValueOnce("/favorites");
-
+    const navOptionSelected: NavigationOptions = NavigationOptions.Favorites;
     const favoritePlanetsData: PlanetDetailData[] = [
       {
         name: "test-name-1",
@@ -176,6 +168,7 @@ describe("PlanetsComponent tests", () => {
       planetsData,
       favoritePlanetsData,
       planetDetailData,
+      navOptionSelected,
     });
 
     waitFor(() =>

@@ -21,11 +21,6 @@ jest.mock("next/navigation", () => {
         replace: jest.fn(),
       };
     },
-    usePathname() {
-      return {
-        includes: jest.fn().mockReturnValue(true),
-      };
-    },
   };
 });
 

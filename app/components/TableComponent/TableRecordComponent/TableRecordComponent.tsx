@@ -7,6 +7,9 @@ export default function TableRecordComponent({
 }: TableRecordComponentProps) {
   const router = useRouter();
 
+  /**
+   * When the user clicks on a particular record, we route the user to Planet Detail page by updating the url. The planet id is passed in the url which is used to fetch the planetDetailData for that planet to be shown in the UI.
+   */
   const onTableRecordClick = (): void => {
     const url = `/planets/${planetData.id}`;
     router.replace(url);

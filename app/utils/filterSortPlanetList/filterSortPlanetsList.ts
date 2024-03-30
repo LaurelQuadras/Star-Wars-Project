@@ -2,7 +2,7 @@ import { PlanetData } from "../../models/planetData";
 import { TableHeaderSortOptions } from "../../models/tableHeaderSortOptions";
 
 /**
- * Sorts the PlanetData list based on the column and the sorting option selected
+ * This method sorts the PlanetData list based on the column and the sorting option selected
  * @param planetsList
  * @param column
  * @param sortOption
@@ -15,10 +15,16 @@ export const filterSortPlanetsList = (
 ): PlanetData[] => {
   let sortedPlanetsList: PlanetData[] = [];
 
+  /*
+  Here, we extract the PlanetData records which has invalid selected column value which cannot be sorted. It is then appended to the final sorted PlanetData list and it's position in the final list is based on the sorting direction applied.
+  */
   const invalidValuesPlanetList: PlanetData[] = planetsList.filter(
     (pp: PlanetData) => Number.isNaN(Number(pp[column]))
   );
 
+  /*
+  Here we extract the PlanetData records which have valid selected column value. We then perform the sorting operation on this list of records.
+  */
   const validValuesPlanetList: PlanetData[] = planetsList.filter(
     (pp: PlanetData) => !Number.isNaN(Number(pp[column]))
   );

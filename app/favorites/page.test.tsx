@@ -25,11 +25,6 @@ jest.mock("next/navigation", () => {
         replace: jest.fn(),
       };
     },
-    usePathname() {
-      return {
-        includes: jest.fn().mockReturnValue(false),
-      };
-    },
   };
 });
 
@@ -42,19 +37,12 @@ describe("FavoritesPage Tests", () => {
     },
   };
 
-  const usePathname = jest.spyOn(require("next/navigation"), "usePathname");
-
   it("renders Favorites Page", () => {
     getRender(initialReduxState);
     expect(screen.getByTestId("favorites-page")).toBeDefined();
   });
 
   it("renders Favorites Page with favorites planets present and displayes it in UI", () => {
-    usePathname.mockImplementation(() => ({
-      includes: jest.fn().mockReturnValue(false),
-    }));
-    usePathname.mockReturnValueOnce("/favorites");
-
     const planetsResultApiData: PlanetsResultApiData = {
       name: "test-name",
       rotation_period: "test-rotation-period",
