@@ -90,13 +90,13 @@ In Client side API calls, I could implement react-query to cache the responses a
 
 ## What things i could have improved on If i had more time
 
-\*To improve the coding standard, in addition to eslint which I have implemented in this project,
+- To improve the coding standard, in addition to eslint which I have implemented in this project,
 
-- I would set up and use SonarQube to reduce code duplications and code smells.
-- I would also use Prettier to improve Code formatting.
+* I would set up and use SonarQube to reduce code duplications and code smells.
+* I would also use Prettier to improve Code formatting.
 
-\*I would use Storybook to display the Components seperately like TableComponent or FavoriteComponent.
-\*I would implement the Mobile UI of this project to have a better user experience with a different design to display both the Planets, PlanetsDetail and Favorites page.
+- I would use Storybook to display the Components seperately like TableComponent or FavoriteComponent.
+- I would implement the Mobile UI of this project to have a better user experience with a different design to display both the Planets, PlanetsDetail and Favorites page.
 
 ## How to scale it in Future
 
