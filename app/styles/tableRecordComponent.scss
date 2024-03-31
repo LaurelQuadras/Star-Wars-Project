@@ -5,6 +5,10 @@
   border-style: none none solid none;
   cursor: pointer;
 
+  &:hover {
+    background-color: $lightSilver;
+  }
+
   &__column {
     width: 20%;
     padding: 1rem 1rem;
