@@ -99,3 +99,8 @@ In Client side API calls, I could implement react-query to cache the responses a
 
 - If the PlanetsList or FavoriteList is huge, I would implement Pagination or Infinte Scrolling using Virtualization to have a Good performance in the UI. This would allow me to display a huge number of records without affecting the load time and performance.
 - For a better developer experience, I would use Material UI Library which provides ready made built-in components and better styles. This would save developer time in implementing the css ourselves.
+
+* If there are other routes created which has the same SideNavigationComponent, then I would easily render it inside ContentComponent and handle the logic to show the new Route Components there. Since ContentComponent receives as props the navOptionSelected, in the routes page of the new route, I will pass the appropriate NavigationOption so that ContentComponent can easily render it.
+* If the new Component is used to render a Table, then I would re-use the TableComponent by passing the custom TableHeaders and TableRecords data. I can also pass any other Components required to the new Component.
+
+![Architecture Flowchart for Star wars project scaling](<Architecture Flowchart for Star wars project scaling.png>)
