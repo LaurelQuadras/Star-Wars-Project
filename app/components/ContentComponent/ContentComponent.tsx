@@ -14,10 +14,21 @@ export default function ContentComponent({
   planetDetailData,
   openRemoveModal,
 }: ContentComponentProps) {
+  const tableHeaderColumns: string[] = [
+    "Name",
+    "Climate",
+    "Diameter",
+    "Population",
+    "Favorite",
+  ];
+
   //This method is used to show the appropriate UI based on the url of the browser.
   const renderPageContent = (): ReactNode => {
     return navOptionSelected === NavigationOptions.Planets ? (
-      <TableComponent planetsData={planetsData} />
+      <TableComponent
+        planetsData={planetsData}
+        tableHeaderColumns={tableHeaderColumns}
+      />
     ) : navOptionSelected === NavigationOptions.Favorites ? (
       <FavoriteListComponent
         favoritePlanetsData={favoritePlanetsData}

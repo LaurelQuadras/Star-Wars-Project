@@ -13,17 +13,27 @@ import { TableHeaderComponentProps } from "./TableHeaderComponent.props";
 
 const getRender = (
   initialReduxState: PlanetReducerType,
-  { sortPlanetsList }: TableHeaderComponentProps
+  { tableHeaderColumns, sortPlanetsList }: TableHeaderComponentProps
 ): RenderResult => {
   return render(
     <MockStoreProvider initialState={initialReduxState}>
-      <TableHeaderComponent sortPlanetsList={sortPlanetsList} />
+      <TableHeaderComponent
+        tableHeaderColumns={tableHeaderColumns}
+        sortPlanetsList={sortPlanetsList}
+      />
     </MockStoreProvider>
   );
 };
 
 describe("TableHeaderComponent tests", () => {
   const sortPlanetsList = jest.fn();
+  const tableHeaderColumns: string[] = [
+    "Name",
+    "Climate",
+    "Diameter",
+    "Population",
+    "Favorite",
+  ];
 
   const initialReduxState: PlanetReducerType = {
     favoriteList: [],
@@ -34,13 +44,13 @@ describe("TableHeaderComponent tests", () => {
   };
 
   it("renders TableHeaderComponent", () => {
-    getRender(initialReduxState, { sortPlanetsList });
+    getRender(initialReduxState, { tableHeaderColumns, sortPlanetsList });
 
     expect(screen.getByTestId("table-header-component")).toBeDefined();
   });
 
   it("renders TableHeaderComponent and tries to click on Name column which does not have sort functionality", () => {
-    getRender(initialReduxState, { sortPlanetsList });
+    getRender(initialReduxState, { tableHeaderColumns, sortPlanetsList });
 
     fireEvent.click(screen.getByTestId("table-header-component-Name"));
 
@@ -48,7 +58,7 @@ describe("TableHeaderComponent tests", () => {
   });
 
   it("renders TableHeaderComponent and clicks on Diameter column to sort the table based on ascending diameter values", () => {
-    getRender(initialReduxState, { sortPlanetsList });
+    getRender(initialReduxState, { tableHeaderColumns, sortPlanetsList });
 
     fireEvent.click(screen.getByTestId("table-header-component-Diameter"));
 
@@ -56,7 +66,7 @@ describe("TableHeaderComponent tests", () => {
   });
 
   it("renders TableHeaderComponent and clicks on Diameter column twice to sort the table based on descending diameter values", () => {
-    getRender(initialReduxState, { sortPlanetsList });
+    getRender(initialReduxState, { tableHeaderColumns, sortPlanetsList });
 
     fireEvent.click(screen.getByTestId("table-header-component-Diameter"));
 
@@ -66,7 +76,7 @@ describe("TableHeaderComponent tests", () => {
   });
 
   it("renders TableHeaderComponent and clicks on Population column to sort the table based on ascending population values", () => {
-    getRender(initialReduxState, { sortPlanetsList });
+    getRender(initialReduxState, { tableHeaderColumns, sortPlanetsList });
 
     fireEvent.click(screen.getByTestId("table-header-component-Population"));
 
@@ -74,7 +84,7 @@ describe("TableHeaderComponent tests", () => {
   });
 
   it("renders TableHeaderComponent and clicks on Population column twice to sort the table based on descending population values", () => {
-    getRender(initialReduxState, { sortPlanetsList });
+    getRender(initialReduxState, { tableHeaderColumns, sortPlanetsList });
 
     fireEvent.click(screen.getByTestId("table-header-component-Population"));
 
@@ -92,7 +102,7 @@ describe("TableHeaderComponent tests", () => {
       },
     };
 
-    getRender(initialReduxState, { sortPlanetsList });
+    getRender(initialReduxState, { tableHeaderColumns, sortPlanetsList });
 
     waitFor(() =>
       expect(

@@ -14,11 +14,14 @@ import { TableComponentProps } from "./TableComponent.props";
 
 const getRender = (
   initialReduxState: PlanetReducerType,
-  { planetsData }: TableComponentProps
+  { tableHeaderColumns, planetsData }: TableComponentProps
 ): RenderResult => {
   return render(
     <MockStoreProvider initialState={initialReduxState}>
-      <TableComponent planetsData={planetsData} />
+      <TableComponent
+        tableHeaderColumns={tableHeaderColumns}
+        planetsData={planetsData}
+      />
     </MockStoreProvider>
   );
 };
@@ -58,6 +61,14 @@ describe("TableComponent tests", () => {
     },
   ];
 
+  const tableHeaderColumns: string[] = [
+    "Name",
+    "Climate",
+    "Diameter",
+    "Population",
+    "Favorite",
+  ];
+
   const initialReduxState: PlanetReducerType = {
     favoriteList: [],
     sortOption: {
@@ -67,7 +78,7 @@ describe("TableComponent tests", () => {
   };
 
   it("renders TableComponent", () => {
-    getRender(initialReduxState, { planetsData });
+    getRender(initialReduxState, { tableHeaderColumns, planetsData });
 
     expect(screen.getByTestId("table-component")).toBeDefined();
   });
@@ -79,7 +90,10 @@ describe("TableComponent tests", () => {
     planetsDataForDiameter[0].diameter = "50";
     planetsDataForDiameter[1].diameter = "25";
 
-    getRender(initialReduxState, { planetsData: planetsDataForDiameter });
+    getRender(initialReduxState, {
+      tableHeaderColumns,
+      planetsData: planetsDataForDiameter,
+    });
 
     fireEvent.click(screen.getByTestId("table-header-component-Diameter"));
 
@@ -98,7 +112,10 @@ describe("TableComponent tests", () => {
     planetsDataForPopulation[0].population = "50";
     planetsDataForPopulation[1].population = "25";
 
-    getRender(initialReduxState, { planetsData: planetsDataForPopulation });
+    getRender(initialReduxState, {
+      tableHeaderColumns,
+      planetsData: planetsDataForPopulation,
+    });
 
     fireEvent.click(screen.getByTestId("table-header-component-Population"));
 
@@ -125,7 +142,10 @@ describe("TableComponent tests", () => {
     planetsDataForPopulation[0].population = "50";
     planetsDataForPopulation[1].population = "25";
 
-    getRender(initialReduxState, { planetsData: planetsDataForPopulation });
+    getRender(initialReduxState, {
+      tableHeaderColumns,
+      planetsData: planetsDataForPopulation,
+    });
 
     waitFor(() =>
       expect(

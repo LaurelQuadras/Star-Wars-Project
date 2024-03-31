@@ -11,7 +11,10 @@ import { TableComponentProps } from "./TableComponent.props";
 import TableHeaderComponent from "./TableHeaderComponent/TableHeaderComponent";
 import TableRecordComponent from "./TableRecordComponent/TableRecordComponent";
 
-export default function TableComponent({ planetsData }: TableComponentProps) {
+export default function TableComponent({
+  planetsData,
+  tableHeaderColumns,
+}: TableComponentProps) {
   const sortValues: SortOptionStoreInfo = useAppSelector(getSortingFieldValues);
   const [planetsList, setPlanetsList] = useState<PlanetData[]>(planetsData);
 
@@ -51,7 +54,10 @@ export default function TableComponent({ planetsData }: TableComponentProps) {
 
   return (
     <div className="table-component" data-testid="table-component">
-      <TableHeaderComponent sortPlanetsList={sortPlanetsList} />
+      <TableHeaderComponent
+        tableHeaderColumns={tableHeaderColumns}
+        sortPlanetsList={sortPlanetsList}
+      />
       {planetsList.map((planet: PlanetData) => (
         <TableRecordComponent key={planet.name} planetData={planet} />
       ))}

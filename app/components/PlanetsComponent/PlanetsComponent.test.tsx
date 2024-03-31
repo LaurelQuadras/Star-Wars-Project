@@ -184,5 +184,8 @@ describe("PlanetsComponent tests", () => {
     waitFor(() =>
       expect(screen.getByTestId("popup-modal-component")).not.toBeDefined()
     );
+    waitFor(() =>
+      expect(screen.getAllByTestId("favorite-component")).toHaveLength(1)
+    );
   });
 });

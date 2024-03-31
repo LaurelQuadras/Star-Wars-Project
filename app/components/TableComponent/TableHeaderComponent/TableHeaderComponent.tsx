@@ -10,6 +10,7 @@ import {
 import { TableHeaderComponentProps } from "./TableHeaderComponent.props";
 
 export default function TableHeaderComponent({
+  tableHeaderColumns,
   sortPlanetsList,
 }: TableHeaderComponentProps) {
   const dispatch = useAppDispatch();
@@ -29,14 +30,6 @@ export default function TableHeaderComponent({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const tableHeaderColumns: string[] = [
-    "Name",
-    "Climate",
-    "Diameter",
-    "Population",
-    "Favorite",
-  ];
 
   /**
    *This method is called when the user clicks on the Table Column for Sorting purpose. After verifying that the column is either Diameter or Population, we call sortPlanetList method and passing the column name and sort direction as params. We also update the appropriate states: sortOption and sortFieldValues to reflect it in the UI. And we dispatch the column name and sort direction to redux to store it in global state.
