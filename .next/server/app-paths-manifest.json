@@ -1,6 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/planets/page": "app/planets/page.js",
-  "/planets/[planetId]/page": "app/planets/[planetId]/page.js",
-  "/favorites/page": "app/favorites/page.js"
-}
