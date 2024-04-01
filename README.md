@@ -12,7 +12,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ![Architecture Diagram of the Components in this project](<Architecture Flowchart of Starwars project.png>)
 
-I have used React (Nextjs) for this application. I used it for it's Server side rendering which I have implemented in this project. Also, since there are several similar UI components between the three pages ( /planets, /planets/:id, /favorites ) I have created common Components which I have re-used for these three routes. The following is a brief summary of the responsibilities of each component.
+I have used React (Nextjs) for this application. I used it for it's Server side rendering which I have implemented in this project. Also, since there are several similar UI components between the three pages ( /planets, /planets/:id, /favorites ), I have created common Components which I have re-used for these three routes. The following is a brief summary of the responsibilities of each component.
 
 - **Route component for /planets**: This component which is rendered Server side performs a server api call to get the list of PlanetsData to be displayed in UI. It passes this data to it's children.
 - **Route component for /planets/:id**: This component which is rendered Server side performs two server api calls:- To get the list of PlanetsData to be displayed in UI and to get the PlanetDetailData for the id passed in the parameter. It passes these both data to it's children.
@@ -33,12 +33,12 @@ I have used React (Nextjs) for this application. I used it for it's Server side 
 To have a better and clear implementation, I have used Redux toolkit to store the information about the List of Favorite Planets which the user has selected and to store the Sort Options which the user has applied.
 
 - **Favorite Planets list**: This field is a List of PlanetStoreInfo object which includes id and name. I store this field in redux to have a centralized global state of the planets which the user has marked as favorite. When user, in /planets or /planets/:id route, toggles the favorite icon of a record, an action, which consists of planetId and name, is dispatched to update the global favoriteList state. It either adds that info to the FavoriteList or removes from it depending on the user behavior.
-  On /favorites route, this list is fetched from redux and for every PlanetId present in it, I get the PlanetDetailData List by doing an api call. This PlanetDetailData is then displayed to the end user.
+  On /favorites route, this list is fetched from redux and for every PlanetId present in it, I get the PlanetDetailData List by doing an api call and passing the planetId as param. This PlanetDetailData is then displayed to the end user.
   On /favorites route, when user removes a Planet from favorite, an action which consists of planet name is dispatched to remove that planet from the redux Favorite list.
   When user navigates to /planets or /planets/:id route, this list is fetched to update the UI with the proper favorite status for each record.
 
 - **SortOption**: This field is a SortOptionsStoreInfo object which consists of sort field and sort direction. I store this field in redux to have a centralized global state of the last Sorting operation which the user has applied. When user toggles the table header, an action which consists of the appropriate sort field and sort direction is dispatched to redux to update the global sortOption state.
-  When user navigates to /planets or /planets/:id route from any other route, this sortOption state is fetched to perform the last sorting operation which the user has applied. Also, it updates the Table Header Column to show the appropriate sort direction icon for the column.
+  When user navigates to /planets or /planets/:id route from any other route, this sortOption state is fetched on page load to perform the last sorting operation which the user has applied. Also, it updates the Table Header Column to show the appropriate sort direction icon for the column.
 
 ## Design pattern:
 
@@ -50,10 +50,13 @@ The design pattern I have used makes use of the Component architecture of React.
 - I created the three routes: /planets, /planets/:id and /favorites route to handle the three navigation routes required.
 - I added code to make the api calls required for /planets and /planets/:id page. I also added the appropriate object conversion required to return the exact object which I need to show the content in the UI.
 - I created a common component called PlanetsComponent to receive the api responses from it's parent route components.
-- I created two children component called SideNavigationComponent and ContentComponent to show the two sections of the UI for /planets and /planets/:id page.
+- I created two children component inside it called SideNavigationComponent and ContentComponent to show the two sections of the UI for /planets and /planets/:id page.
 - In SideNavigationComponent, I added the two buttons and on click of that button, I added code to change the browser route to it's appropriate url.
 - I then created the TableComponent, TableHeaderComponent and TableRecordComponent to show the table in UI. I rendered TableComponent inside ContentComponent and passed the api response to it.
 - In TableComponent, I added code to sort the table based on column and direction applied from TableHeaderComponent, and update the TableRecordComponent with the new PlanetData List.
+
+* In TableHeaderComponent, I added code to perform the call the sort operation function on click of a Diameter or Population Table Header.
+
 - In TableRecordComponent, I added FavoriteIconComponent to dynamically update the favorite status of a Planet based on user click behavior.
 - In ContentComponent, I created the PlanetDetailComponent which is shown to the user on click of a particular record.
 - In TableRecordComponent, I added code to change the route from /planets to /planets/:id as well as from planets/:oldId to planets/:newId depending on the Id of the Planet the user has clicked on.
